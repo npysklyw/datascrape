@@ -26,45 +26,53 @@ String.prototype.replaceAll = function(search, replacement) {
   fetch(url)
   .then(res => res.json())
   .then((out) => {
-    item = `
+//     item = `
 
-(0:00) Intro
-(1:36) BOCA
-(4:44) Break the wall
-(8:29) Can't get you out of my mind
-(12:09) Dear
-(15:55) BOCA (Inst.)
-`
+// (0:00) Intro
+// (1:36) BOCA
+// (4:44) Break the wall
+// (8:29) Can't get you out of my mind
+// (12:09) Dear
+// (15:55) BOCA (Inst.)
+// `
 
-  item = ` 
-0:00 Introduction
-2:35 Docker Overview
-5:10 Getting Started
-16:58 Install Docker
-21:00 Commands
-29:00 Labs
-33:12 Run
-42:19 Environment Variables
-44:07 Images
-51:38 CMD vs ENTRYPOINT
-58:37 Networking
-1:03:55 Storage
-1:16:27 Compose
-1:34:49 Registry
-1:39:38 Engine
-1:46:20 Docker on Windows
-1:53:22 Docker on Mac
-1:55:20 Container Orchestration
-1:59:25 Docker Swarm
+//   item = ` 
+//   0:00 Introduction
+//   2:35 Docker Overview
+//   5:10 Getting Started
+// 16:58 Install Docker
+// 21:00 Commands
+// 29:00 Labs
+// 33:12 Run
+// 42:19 Environment Variables
+// 44:07 Images
+// 51:38 CMD vs ENTRYPOINT
+// 58:37 Networking
+// 1:03:55 Storage
+// 1:16:27 Compose
+// 1:34:49 Registry
+// 1:39:38 Engine
+// 1:46:20 Docker on Windows
+// 1:53:22 Docker on Mac
+// 1:55:20 Container Orchestration
+// 1:59:25 Docker Swarm
   
-2:03:21 Kubernetes
-2:09:30 Conclusion`
-    // item = out.items[0].snippet.description;
-    // item = item.replaceAll('(',"");
-    // item = item.replaceAll(')',"");
-    // item = item.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
+// 2:03:21 Kubernetes
+// 2:09:30 Conclusion`
+
+
+
     
+    item = item.trim();
+    item = out.items[0].snippet.description;
+    item = item.replaceAll('(',"");
+    item = item.replaceAll(')',"");
+    item = item.replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '');
     console.log(item)
+    item = item.replaceAll('\r',''); 
+    item = item.replaceAll('\n  ','\n'); 
+    
+    
     var chapters = youtubeChapters(item)
     
     
