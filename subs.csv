@@ -1,0 +1,2862 @@
+start,dur,text
+0.44,5.439,[Music]
+3.35,4.509,hello and welcome to the donker for
+5.879,3.93,beginners course my name is simone shot
+7.859,5.07,monolith and i will be your instructor
+9.809,5.79,for this course I'm a DevOps and cloud
+12.929,4.711,trainer at code cloud comm which is an
+15.599,4.44,interactive hands-on online learning
+17.64,4.59,platform I've been working in the
+20.039,4.171,industry as a consultant for over 13
+22.23,4.23,years and have helped hundreds of
+24.21,5.37,thousands of students learn technology
+26.46,5.01,in a fun and interactive way in this
+29.58,4.77,course you will learn docker through a
+31.47,5.63,series of lectures that use animation
+34.35,5.97,illustration and some fun analogies that
+37.1,5.229,simplify complex concepts we have demos
+40.32,3.899,that will show you how to install and
+42.329,4.41,get started with docker and most
+44.219,4.86,importantly we have hands-on labs that
+46.739,4.861,you can access right in your browser I
+49.079,4.591,will explain more about it in a bit but
+51.6,4.74,first let's look at the objectives of
+53.67,5.13,this course in this course we first try
+56.34,4.649,to understand what containers are what
+58.8,4.649,docker is and why you might need it and
+60.989,4.95,what it can do for you we will see how
+63.449,4.561,to run a docker container how to build
+65.939,4.321,your own docker image we will see
+68.01,4.77,networking in docker and how to use
+70.26,4.679,docker compose what docker registry is
+72.78,4.05,how to deploy your own private registry
+74.939,4.11,and we then look at some of these
+76.83,4.38,concepts in debt and we try to
+79.049,4.831,understand how docker really works under
+81.21,5.43,the hood we look at docker for Windows
+83.88,5.04,and Mac before finally getting a basic
+86.64,5.01,introduction to container orchestration
+88.92,5.01,tools like dr. Swann and kubernetes
+91.65,4.95,here's a quick note about hands-on labs
+93.93,4.799,first of all to complete this course you
+96.6,5.129,don't have to set up your own labs well
+98.729,4.771,you may set it up if you wish to if you
+101.729,4.051,wish to have your own environment and we
+103.5,4.95,have a demo as well but as part of this
+105.78,5.19,course we provide real labs that you can
+108.45,5.129,access right in your browser anywhere
+110.97,5.429,anytime and as many times as you want
+113.579,5.191,the labs give you instant access to a
+116.399,4.981,terminal to a docker host and an
+118.77,4.65,accompanying quiz portal the quiz portal
+121.38,3.839,asks a set of questions such as
+123.42,4.32,exploring the environment and gathering
+125.219,4.71,information or you might be asked to
+127.74,4.95,perform an action such as run docker
+129.929,3.751,container the quiz portal then validates
+132.69,3.419,your work and
+133.68,4.77,gives you feedback instantly every
+136.109,4.71,lecture in this course is accompanied by
+138.45,4.89,such challenging interactive quizzes
+140.819,5.7,that makes learning docker a fun
+143.34,6.32,activity so I hope you're asked thrilled
+146.519,11.69,as I am to get started so let us begin
+149.66,10.809,[Music]
+158.209,4.39,we're going to start by looking at a
+160.469,5.071,high-level overview on why you need
+162.599,5.04,docker and what it can do for you let me
+165.54,4.74,start by sharing how I got introduced to
+167.639,4.71,Locker in one of my previous projects I
+170.28,4.289,had this requirement to set up an
+172.349,4.711,end-to-end application stack including
+174.569,4.98,various different technologies like a
+177.06,5.129,web server using node.js and a database
+179.549,5.16,such as MongoDB and a messaging system
+182.189,4.681,like Redis and an orchestration tool
+184.709,4.62,like ansible we had a lot of issues
+186.87,5.009,developing this application stack with
+189.329,4.351,all these different components first of
+191.879,4.11,all their compatibility with the
+193.68,4.589,underlying OS was an issue we had to
+195.989,5.071,ensure that all these different services
+198.269,4.86,were compatible with the version of OS
+201.06,4.139,we were planning to use there have been
+203.129,4.23,times when certain version of these
+205.199,4.38,services were not compatible with the OS
+207.359,4.261,and we've had to go back and look at
+209.579,4.981,different OS that was compatible with
+211.62,4.649,all of these different services secondly
+214.56,4.349,we had to check the compatibility
+216.269,5.37,between these services and the libraries
+218.909,5.28,and dependencies on the OS we've had
+221.639,4.831,issues where one service requires one
+224.189,4.44,version of a dependent library whereas
+226.47,4.829,another service requires another version
+228.629,5.371,the architecture of our application
+231.299,4.68,changed over time we've had to upgrade
+234,4.979,to newer versions of these components or
+235.979,5.16,change the database etc and every time
+238.979,4.23,something changed we had to go through
+241.139,3.87,the same process of checking
+243.209,3.84,compatibility between these various
+245.009,5.4,components and the underlying
+247.049,5.91,infrastructure this compatibility matrix
+250.409,6.36,issue is usually referred to as the
+252.959,6.39,matrix from hell next every time we had
+256.769,4.411,a new developer on board we found it
+259.349,4.021,really difficult to set up a new
+261.18,4.349,environment the new developers had to
+263.37,3.82,follow a large set of instructions
+265.529,3.281,around hundreds of commands
+267.19,3.9,if you finally setup their environment
+268.81,4.02,we had to make sure they were using the
+271.09,3.66,right operating system the right
+272.83,4.56,versions of each of these components and
+274.75,5.67,each developer had to set all that up by
+277.39,5.01,himself each time we also had different
+280.42,4.41,development tests and production
+282.4,4.5,environments one developer may be
+284.83,4.59,comfortable using one OS and the others
+286.9,4.38,may be comfortable using another one and
+289.42,4.17,so we couldn't guarantee that the
+291.28,3.9,application that we were building would
+293.59,4.35,run the same way in different
+295.18,5.85,environments and so all of this made our
+297.94,6.39,life in developing building and shipping
+301.03,5.31,the application really difficult so I
+304.33,3.87,needed something that could help us with
+306.34,3.99,the compatibility issue and something
+308.2,4.86,that will allow us to modify or change
+310.33,4.77,these components without affecting the
+313.06,4.14,other components and even modify the
+315.1,5.1,underlying operating systems as required
+317.2,6.3,and that search landed me on docker
+320.2,6.33,with docker I was able to run each
+323.5,5.28,component in a separate container with
+326.53,6.03,its own dependencies and its own
+328.78,5.67,libraries all on the same VM and the OS
+332.56,4.47,but within separate environments or
+334.45,5.13,containers we just had to build the
+337.03,4.56,docker configuration once and all our
+339.58,4.65,developers could now get started with a
+341.59,4.32,simple docker run command a respective
+344.23,4.29,of what the underlying operating system
+345.91,4.53,layer on all they needed to do was to
+348.52,4.31,make sure they had doc are installed on
+350.44,5.06,their systems so what are containers
+352.83,4.75,containers are completely isolated
+355.5,4.54,environments I think they can have their
+357.58,3.63,own processes for services their own
+360.04,3.12,network interfaces
+361.21,4.41,their own mounts just like washing
+363.16,5.28,machines except they all share the same
+365.62,4.89,OS kernel we will look at what that
+368.44,4.23,means in a bit but it's also important
+370.51,4.56,to note that containers are not new with
+372.67,4.32,docker containers have existed for about
+375.07,5.1,10 years now and some of the different
+376.99,6.75,types of containers are LX c LX d LX c
+380.17,5.82,FS etc docker utilizes LX c containers
+383.74,4.38,setting up these continua environments
+385.99,4.35,is hard as they're very low-level and
+388.12,4.14,that is where docker offers a high level
+390.34,4.14,tool with several powerful
+392.26,5.58,functionalities making it really easy
+394.48,5.87,for end-users like us to understand how
+397.84,5.27,docker works let us revisit some base
+400.35,4.17,concepts of operating systems first if
+403.11,4.74,you look at operating systems like
+404.52,6.78,Ubuntu Fedora Susi air scent OS they all
+407.85,6.15,consist of two things an OS kernel and a
+411.3,4.5,set of software the OS kernel is
+414,4.05,responsible for interacting with the
+415.8,4.29,underlying hardware while the OS kernel
+418.05,4.44,remains the same which is Linux in this
+420.09,4.16,case it's the software above it that
+422.49,4.92,makes these operating systems different
+424.25,5.65,this software may consist of a different
+427.41,5.52,user interface drivers compilers file
+429.9,5.79,managers developer tools etc so you have
+432.93,5.34,a common Linux kernel shared across all
+435.69,4.47,races and some custom software that
+438.27,2.51,differentiate operating systems from
+440.16,3.69,each other
+440.78,5.53,we said earlier that docker containers
+443.85,3.27,share the underlying kernel so what does
+446.31,3.45,that actually mean
+447.12,5.19,sharing the kernel let's say we have a
+449.76,5.22,system with an Ubuntu OS with docker
+452.31,5.25,installed on it docker can run any
+454.98,5.07,flavor of OS on top of it as long as
+457.56,5.97,they are all based on the same kernel in
+460.05,6.06,this case Linux if the underlying OS is
+463.53,4.74,Ubuntu docker can run a container based
+466.11,5.58,on another distribution like debian
+468.27,5.76,fedora SUSE or Sint OS each docker
+471.69,4.47,container only has the additional
+474.03,3.96,software that we just talked about in
+476.16,4.11,the previous slide that makes these
+477.99,4.65,operating systems different and docker
+480.27,5.01,utilizes the underlying kernel of the
+482.64,6,docker host which works with all OSS
+485.28,6.81,above so what is an OS that do not share
+488.64,5.61,the same kernel as this Windows and so
+492.09,4.86,you won't be able to run a Windows based
+494.25,5.73,container on a docker host with Linux on
+496.95,5.79,it for that you will require a docker on
+499.98,5.61,a Windows server now it is when I say
+502.74,5.46,this that most of my students go hey
+505.59,4.14,hold on there that's not true and they
+508.2,4.019,installed our own windows run a
+509.73,5.76,container based on Linux and go see it's
+512.219,5.76,possible well when you install docker on
+515.49,4.89,Windows and run a Linux container on
+517.979,4.801,Windows you're not really running a
+520.38,4.98,Linux container on Windows Windows runs
+522.78,4.92,a Linux container on a Linux virtual
+525.36,4.68,machine under the hood so it's really
+527.7,6.09,Linux container on Linux virtual machine
+530.04,6.51,on Windows we discuss more about this
+533.79,5.76,the docker on Windows or Mac later
+536.55,5.43,during this course now you might ask
+539.55,5.94,isn't that a disadvantage then not being
+541.98,5.76,able to run another kernel on the OS the
+545.49,4.8,answer is no because unlike hypervisors
+547.74,4.14,docker is not meant to virtualize and
+550.29,4.11,run different operating systems and
+551.88,5.19,kernels on the same hardware the main
+554.4,5.19,purpose of docker is to package and
+557.07,5.1,container as applications and to ship
+559.59,6,them and to run them anywhere any times
+562.17,5.7,as many times as you want so that brings
+565.59,4.35,us to the differences between virtual
+567.87,4.02,machines and containers something that
+569.94,4.53,we tend to do is specially those from a
+571.89,5.1,virtualization background as you can see
+574.47,4.98,on the right in case of docker we have
+576.99,4.56,the underlying hardware infrastructure
+579.45,4.8,and then the OS and then docker
+581.55,4.86,installed on the OS docker then manages
+584.25,4.62,the containers that run with libraries
+586.41,4.53,and dependencies alone in case of
+588.87,5.34,virtual machines we have the hypervisor
+590.94,5.64,like ESX on the hardware and then the
+594.21,4.71,virtual machines on them as you can see
+596.58,5.01,each virtual machine has its own OS
+598.92,5.37,inside it then the dependencies and then
+601.59,4.53,the application the overhead causes
+604.29,3.99,higher utilization of underlying
+606.12,4.11,resources as there are multiple virtual
+608.28,4.86,operating systems and kernels running
+610.23,6.24,the virtual machines also consume higher
+613.14,5.46,disk space as each VM is heavy and is
+616.47,4.14,usually in gigabytes in size whereas
+618.6,4.83,docker containers are lightweight and
+620.61,4.56,are usually in megabytes in size this
+623.43,3.99,allows docker containers to boot up
+625.17,5.19,faster usually in a matter of seconds
+627.42,4.74,whereas VMs as we know takes minutes to
+630.36,4.71,boot up as it needs to boot up the
+632.16,5.31,entire operating system it is also
+635.07,4.71,important to note that docker has less
+637.47,4.83,isolation as more resources are shared
+639.78,5.07,between the containers like kernel where
+642.3,4.95,as VMs have complete isolation from each
+644.85,4.62,other since VMs don't rely on the
+647.25,4.26,underlying OS or kernel you can run
+649.47,4.47,different types of applications built on
+651.51,4.76,different OSS such as Linux based or
+653.94,4.5,Windows based apps on the same analyzer
+656.27,5.59,so those are some differences between
+658.44,5.49,the two now having said that it's not an
+661.86,4.34,either container or virtual machine
+663.93,4.58,situation its container
+666.2,4.23,and virtual machines now when you have
+668.51,3.449,large environments with thousands of
+670.43,4.17,application containers running on
+671.959,5.011,thousands of docker hosts you will often
+674.6,5.669,see containers provisioned on virtual
+676.97,5.489,docker hosts that way we can utilize the
+680.269,4.531,advantages of both technologies we can
+682.459,4.411,use the benefits of virtualization to
+684.8,4.349,easily provision or decommissioned upper
+686.87,4.409,house stuffs as required at the same
+689.149,4.471,time make use of the benefits of docker
+691.279,5.191,to easily provision applications and
+693.62,5.07,quickly scale them as required but
+696.47,4.619,remember that in this case we will not
+698.69,5.49,be provisioning that many virtual
+701.089,6.211,machines as we used to before because
+704.18,4.2,earlier we provisioned a virtual machine
+707.3,3.149,for each application
+708.38,4.199,now you might provision a virtual
+710.449,5.25,machine for hundreds or thousands of
+712.579,5.461,containers so how is it done there are
+715.699,4.471,lots of containerized versions of
+718.04,4.47,applications readily available as of
+720.17,4.71,today so most organizations have their
+722.51,4.59,products containerized and available in
+724.88,5.459,a public dock or repository called
+727.1,5.429,docker hub or docker store for example
+730.339,4.651,you can find images of most common
+732.529,5.071,operating systems databases and other
+734.99,4.62,services and tools once you identify the
+737.6,4.77,images you need and you install docker
+739.61,5.729,on your hosts bringing up an application
+742.37,5.25,is as easy as running a docker run
+745.339,4.44,command with the name of the image in
+747.62,4.17,this case running a docker run ansible
+749.779,4.201,command will run an instance of ansible
+751.79,5.22,on the docker host similarly run an
+753.98,5.609,instance of MongoDB Redis and nodejs
+757.01,4.68,using the docker run command if we need
+759.589,4.981,to run multiple instances of the web
+761.69,4.56,service simply add as many instances as
+764.57,5.249,you need and configure a load balancer
+766.25,5.91,or some kind in the front in case one of
+769.819,5.031,the instances were to fail simply
+772.16,5.34,destroy that instance and launch anyone
+774.85,4.719,there are other solutions available for
+777.5,4.98,handling such cases that we will look at
+779.569,4.95,later during this course and for now
+782.48,5.49,don't focus too much on the commands and
+784.519,5.851,we will get to that in a bit we've been
+787.97,4.14,talking about images and containers
+790.37,5.01,let's understand the difference between
+792.11,5.58,the two an image is a package or a
+795.38,3.42,template just like a VM template that
+797.69,2.24,you might have worked with in the
+798.8,3.17,virtualization
+799.93,5.04,it is used to create one or more
+801.97,5.25,containers containers are running
+804.97,4.62,instances of images that are isolated
+807.22,5.28,and have their own environments and set
+809.59,4.74,of processes as we have seen before a
+812.5,4.17,lot of products have been derived
+814.33,3.9,already in case you cannot find what
+816.67,4.05,you're looking for you could create your
+818.23,4.38,own image and push it to docker hub
+820.72,4.85,repository making it available for
+822.61,5.46,public so if you look at it
+825.57,4.75,traditionally developers developed
+828.07,4.32,applications then they hand it over to
+830.32,4.86,ops team to deploy and manage it in
+832.39,4.8,production environments they do that by
+835.18,4.53,providing a set of instructions such as
+837.19,4.53,information about how the hosts must be
+839.71,3.36,set up what prerequisites are to be
+841.72,3.74,installed on the host and how the
+843.07,5.04,dependencies are to be configured etc
+845.46,4.27,since the ops team did not really
+848.11,4.26,develop the application on their own
+849.73,4.08,they struggle with setting it up when
+852.37,4.8,the hidden issue they worked with the
+853.81,5.85,developers to resolve it with docker the
+857.17,5.76,developers and operations teams work
+859.66,5.37,hand-in-hand to transform the guide into
+862.93,4.74,a docker file with both of their
+865.03,4.29,requirements this docker file is then
+867.67,4.56,used to create an image for their
+869.32,5.22,applications this image can now run on
+872.23,4.38,any host with docker installed on it and
+874.54,4.71,is guaranteed to run the same way
+876.61,4.47,everywhere so the ops team can now
+879.25,4.41,simply use the image to deploy the
+881.08,4.35,application since the image was already
+883.66,4.679,working when the developer built it and
+885.43,5.31,operations are have not modified it it
+888.339,5.011,continues to work the same way when
+890.74,5,deployed in production and that's one
+893.35,5.76,example of how a tool like docker
+895.74,5.56,contributes to the DevOps culture well
+899.11,4.17,that's it for now and in the upcoming
+901.3,3.43,lecture we will look at how to get
+903.28,10.3,started with docker
+904.73,11.65,[Music]
+913.58,6.16,we will now see how to get started with
+916.38,5.31,docker now docker has two editions the
+919.74,4.92,Community Edition and the Enterprise
+921.69,5.7,Edition the Community Edition is the set
+924.66,5.07,of free docker products the Enterprise
+927.39,4.65,Edition is the certified and supported
+929.73,4.68,container platform that comes with
+932.04,5.4,enterprise add-ons like the image
+934.41,4.56,management image security Universal
+937.44,3.87,control plane for managing and
+938.97,4.89,orchestrating container runtimes but of
+941.31,4.2,course these come with a price we will
+943.86,3.42,discuss more about container
+945.51,4.95,orchestration later in this course
+947.28,5.31,and along with some alternatives for now
+950.46,4.77,we will go ahead with the community
+952.59,6.27,edition the community edition is
+955.23,7.41,available on Linux Mac Windows or on
+958.86,6.27,cloud platforms like AWS or Azure in the
+962.64,4.56,upcoming demo we will take a look at how
+965.13,6,to install and get started with docker
+967.2,6.45,on a Linux system now if you are on Mac
+971.13,6.03,or Windows you have two options either
+973.65,5.85,install a Linux VM using VirtualBox or
+977.16,4.74,some kind of virtualization platform and
+979.5,4.77,then follow along with the upcoming demo
+981.9,4.95,which is really the most easiest way to
+984.27,5.25,get started with docker the second
+986.85,5.04,option is to install docker Desktop for
+989.52,5.43,Mac or the docker desktop for Windows
+991.89,4.41,which are native applications so if that
+994.95,3.78,is really what you want
+996.3,4.83,check out the docker for Mac and the
+998.73,5.22,windows sections towards the end of this
+1001.13,5.61,course and then head back here once you
+1003.95,5.34,are all set up we will now head over to
+1006.74,7.04,a demo and we will take a look at how to
+1009.29,4.49,install docker on a Linux machine
+1014.519,8.26,in this demo we look at how to install
+1019.539,5.52,and get started with docker first of all
+1022.779,5.1,identify a system physical or virtual
+1025.059,5.4,machine or laptop that has a supported
+1027.879,8.971,operating system in my case I have an
+1030.459,7.94,Ubuntu VM go to doctor comm and click on
+1036.85,4.38,get docker
+1038.399,5.89,you will be taken to the docker engine
+1041.23,6.449,Community Edition page that is the free
+1044.289,6.74,version that we are after from the
+1047.679,7.411,left-hand menu select your system type I
+1051.029,5.441,choose Linux in my case and then select
+1055.09,4.199,your OS flavor
+1056.47,5.939,I choose Ubuntu read through the
+1059.289,6.571,prerequisites and requirements your abun
+1062.409,5.88,to system must be 64-bit and one of
+1065.86,6.149,these supported versions like disco
+1068.289,7.71,cosmic Bionic or decennial in my case I
+1072.009,10.441,have a bionic version to confirm view
+1075.999,10.17,the Etsy release file next uninstall any
+1082.45,6.329,older version if one exists so let's
+1086.169,4.95,just make sure that there is none on my
+1088.779,5.581,host so I'll just copy and paste that
+1091.119,6.621,command and I confirm that there are no
+1094.36,6.899,older version that exists on my system
+1097.74,6.25,the next step is to set up repository
+1101.259,5.49,and install the software now there are
+1103.99,5.61,two ways to go about this the first is
+1106.749,4.981,using the package manager by first
+1109.6,4.949,updating the repository using the
+1111.73,4.98,apt-get update command then installing
+1114.549,4.83,the prerequisite packages and then
+1116.71,5.339,adding Dockers of facial GPG keys and
+1119.379,5.37,then installing docker but I'm not going
+1122.049,5.7,to go that route there is an easier way
+1124.749,4.981,if you scroll all the way to the bottom
+1127.749,4.17,you will find the instructions to
+1129.73,5.699,install docker using the convenience
+1131.919,5.58,script it's a script that automates the
+1135.429,5.671,entire installation process and works on
+1137.499,6.241,most operating systems run the first
+1141.1,4.829,command to download a copy of the script
+1143.74,3.36,and then run the second command to
+1145.929,4.531,execute the script
+1147.1,4.68,to install docker automatically give it
+1150.46,3.56,a few minutes to complete the
+1151.78,2.24,installation
+1159.66,4.269,the installation is now
+1161.71,4.05,successful that has now checked the
+1163.929,5.061,version of docker using the darker
+1165.76,7.74,version command we've installed version
+1168.99,6.58,19.0 3.1 we will now run a simple
+1173.5,5.429,container to ensure everything is
+1175.57,7.17,working as expected for this head over
+1178.929,5.821,to docker hub at hub docker calm here
+1182.74,6.15,you will find a list of the most popular
+1184.75,5.37,docker images like nginx MongoDB Alpine
+1188.89,4.62,node.js
+1190.12,6.99,Redis etc let's search for a fun image
+1193.51,6.48,called will see will say is Dockers
+1197.11,5.15,version of cows a which is basically a
+1199.99,6.12,simple application that friends a cow
+1202.26,6.639,saying something in this case it happens
+1206.11,5.88,to be a whale copy the docker run
+1208.899,6.66,command given here remember to add a
+1211.99,5.84,sudo and we will change the message to
+1215.559,2.271,hello world
+1231.79,5.01,on running this command docker pulls the
+1234.46,6.03,image of the whales II application from
+1236.8,9.5,docker hub and runs it and we have our
+1240.49,8.16,avail saying hello great we're all set
+1246.3,4.48,remember for the purpose of this course
+1248.65,3.09,you don't really need to setup a dog or
+1250.78,3.27,system on your own
+1251.74,4.53,we provide hands-on labs that you will
+1254.05,4.23,get access to but if you wish to
+1256.27,9.12,experiment on your own and follow along
+1258.28,9.21,feel free to do so we now look at some
+1265.39,3.48,of the docker commands at the end of
+1267.49,3.57,this lecture you will go through a
+1268.87,4.77,hands-on quiz where you will practice
+1271.06,5.7,working with these commands let's start
+1273.64,4.95,by looking at docker run command the
+1276.76,3.96,docker run command is used to run a
+1278.59,4.41,container from an image running the
+1280.72,5.13,docker run nginx command will run an
+1283,5.79,instance of the nginx application from
+1285.85,5.55,the docker host if it already exists if
+1288.79,4.92,the image is not present on the host it
+1291.4,4.89,will go out to docker hub and pull the
+1293.71,5.01,image down but this is only done the
+1296.29,5.94,first time for the subsequent executions
+1298.72,6.39,the same image will be reused the docker
+1302.23,5.1,PS command lists all running containers
+1305.11,4.95,and some basic information about them
+1307.33,4.92,such as the container ID the name of the
+1310.06,3.93,image we used to run the containers the
+1312.25,4.77,current status and the name of the
+1313.99,6.21,container each container automatically
+1317.02,6.09,gets a random ID and name created for it
+1320.2,6.27,by docker which in this case is silly
+1323.11,7.2,Samet to see all containers running or
+1326.47,6.57,not use the - a option this outputs all
+1330.31,5.34,running as well as previously stopped or
+1333.04,4.86,exited containers we'll talk about the
+1335.65,4.5,command and port fields shown in this
+1337.9,4.49,output later in this course for now
+1340.15,4.98,let's just focus on the basic commands
+1342.39,5.08,to stop a running container use the
+1345.13,4.65,Tucker stop command but you must provide
+1347.47,4.62,either the container ID or the continue
+1349.78,4.29,name in the stop command if you're not
+1352.09,4.98,sure of the name run the docker PS
+1354.07,4.83,command to get it on success you will
+1357.07,4.68,see the name printed out and running
+1358.9,6.18,docker PS again will show no running
+1361.75,5.61,containers running docker PS - a
+1365.08,5.4,however shows the container silly summit
+1367.36,6.9,and that it is in an accident states a
+1370.48,5.52,few seconds ago now what if we don't
+1374.26,3.99,want this container lying around
+1376,5.58,consuming space what if we want to get
+1378.25,5.91,rid of it for good use the docker RM
+1381.58,5.64,command to remove a stopped or exited
+1384.16,5.43,container permanently if it prints the
+1387.22,4.83,name back we're good run the docker PS
+1389.59,5.49,command again to verify that it's no
+1392.05,5.88,longer present good but what about the
+1395.08,5.31,nginx image that was downloaded at first
+1397.93,5.97,we're not using that anymore so how do
+1400.39,6.03,we get rid of that image but first how
+1403.9,5.16,do we see a list of images present on
+1406.42,4.98,our hosts run the docker images command
+1409.06,4.98,to see a list of available images and
+1411.4,6,their sizes on our hosts we have four
+1414.04,6.15,images the nginx Redis Ubuntu and Alpine
+1417.4,6.39,we will talk about tags later in this
+1420.19,5.91,course when we discuss about images to
+1423.79,5.51,remove an image that you no longer plan
+1426.1,5.94,to use run the docker RM I command
+1429.3,4.93,remember you must ensure that no
+1432.04,4.08,containers are running off of that image
+1434.23,4.71,before attempting to remove the image
+1436.12,5.48,you must stop and delete all dependent
+1438.94,5.61,containers to be able to delete an image
+1441.6,5.86,when we ran the docker run command
+1444.55,6.09,earlier it downloaded the Ubuntu image
+1447.46,5.52,as it couldn't find one locally what if
+1450.64,5.43,we simply want to download the image and
+1452.98,5.46,keep so when we run the run docker run
+1456.07,5.79,command we don't want to wait for it to
+1458.44,5.85,download use the docker pull command to
+1461.86,4.2,only pull the image and not run the
+1464.29,4.68,container so in this case the docker
+1466.06,6.33,pull a bull to come and pulls the Ubuntu
+1468.97,5.73,image and stores it on our host let's
+1472.39,4.32,look at another example say you were to
+1474.7,4.89,run a docker container from an Ubuntu
+1476.71,5.37,image when you run the docker run Ubuntu
+1479.59,5.58,command it runs an instance of Ubuntu
+1482.08,4.92,image and exits immediately if you were
+1485.17,3.57,to list the Irani containers you
+1487,3.63,wouldn't see the container running if
+1488.74,4.02,you list all containers including those
+1490.63,5.07,that are stopped you will see that the
+1492.76,5.46,new container iran is in an exited state
+1495.7,5.55,now why is that
+1498.22,5.6,unlike virtual machines containers are
+1501.25,5.85,not meant to host an operating system
+1503.82,6.01,containers are meant to run a specific
+1507.1,4.35,task or process such as to host an
+1509.83,4.589,instance of a web server or application
+1511.45,5.76,server or a database or simply to carry
+1514.419,6.12,some kind of computation or analysis
+1517.21,7.02,tasks once the task is complete the
+1520.539,6.181,container exits a container only lives
+1524.23,4.919,as long as the process inside it is
+1526.72,5.28,alive if the web service inside the
+1529.149,5.971,container is stopped or crash then the
+1532,5.309,container exits this is why when you run
+1535.12,5.009,a container from an Ubuntu image it
+1537.309,4.86,stops immediately because a bundu is
+1540.129,4.861,just an image of an operating system
+1542.169,5.281,that is used as the base image for other
+1544.99,5.429,applications there is no process or
+1547.45,5.88,application running in it by default if
+1550.419,5.401,the image isn't running any service and
+1553.33,5.579,as is the case with Ubuntu you could
+1555.82,5.4,instruct docker to run a process with
+1558.909,4.681,the docker run command for example a
+1561.22,5.189,sleep command with a duration of 5
+1563.59,5.01,seconds when the container starts it
+1566.409,5.61,runs the sleep command and goes into
+1568.6,5.959,sleep for 5 seconds post which the sleep
+1572.019,5.551,command exits and the container stops
+1574.559,5.74,what we just saw was executing a command
+1577.57,4.41,when we run the container but what if we
+1580.299,4.62,would like to execute a command on a
+1581.98,4.89,running container for example when I run
+1584.919,4.59,the docker PS command I can see that
+1586.87,5.659,there is a running container which uses
+1589.509,5.55,the Ubuntu image and sleeps 400 seconds
+1592.529,4.571,let's say I would like to see the
+1595.059,4.47,contents of a file inside this
+1597.1,5.34,particular container I could use the
+1599.529,5.671,docker exec command to execute a command
+1602.44,6.329,on my docker container in this case to
+1605.2,6.929,print the contents of the Etsy hosts
+1608.769,5.071,file finally let's look at one more
+1612.129,4.68,option before we head over to the
+1613.84,5.4,practice exercises I'm now going to run
+1616.809,5.22,a docker image I developed for a simple
+1619.24,6.689,web application the repository name is
+1622.029,5.88,code cloud slash simple web app it runs
+1625.929,5.61,a simple web server that listens on port
+1627.909,6.541,8080 when you run a docker run
+1631.539,5.76,like this it runs in the foreground or
+1634.45,5.669,in an attached mode meaning you will be
+1637.299,5.161,attached to the console or the standard
+1640.119,4.29,out of the docker container and you will
+1642.46,4.649,see the output of the web service on
+1644.409,4.681,your screen you won't be able to do
+1647.109,3.66,anything else on this console other than
+1649.09,4.649,view the output until this docker
+1650.769,7.71,container stops it won't respond to your
+1653.739,6.961,inputs press the ctrl + C combination to
+1658.479,5.101,stop the container and the application
+1660.7,6.599,hosted on the container exits and you
+1663.58,6.39,get back to your prompt another option
+1667.299,5.72,is to run the docker container in the D
+1669.97,6.209,test mode by providing the dash D option
+1673.019,5.26,this will run the docker container in
+1676.179,4.92,the background mode and you will be back
+1678.279,5.911,to your prompt immediately the container
+1681.099,4.231,will continue to run in the backend run
+1684.19,4.77,the docker PS command
+1685.33,5.549,to view the running container now if you
+1688.96,5.309,would like to attach back to the running
+1690.879,5.91,container later run the docker attach
+1694.269,5.73,command and specify the name or ID of
+1696.789,5.401,the docker container now remember if you
+1699.999,4.89,are specifying the ID of a container in
+1702.19,4.919,any docker command you can simply
+1704.889,4.71,provide the first few characters alone
+1707.109,5.341,just so it is different from the other
+1709.599,8.4,container IDs on the host in this case I
+1712.45,7.74,specified a 0 for 3 D now don't worry
+1717.999,4.711,about accessing the UI of the webserver
+1720.19,4.979,for now we will look more into that in
+1722.71,5.13,the upcoming lectures for now let's just
+1725.169,5.041,understand the basic commands will not
+1727.84,4.769,get our hands dirty with the docker CLI
+1730.21,4.75,so let's take a look at how to access
+1732.609,7.061,the practice lab environments next
+1734.96,7.9,[Music]
+1739.67,6.67,let me now walk you through the hands-on
+1742.86,5.73,lab practice environment the links to
+1746.34,4.92,access the labs associated with this
+1748.59,6.24,course are available at cold cloud at
+1751.26,6.57,code cloud comm slash P slash docker
+1754.83,4.35,dash labs this link is also given in the
+1757.83,3.57,description of this video
+1759.18,4.38,once you're on this page use the links
+1761.4,5.79,given there to access the labs
+1763.56,6.87,associated to your lecture each lecture
+1767.19,5.34,has its own lab so remember to choose
+1770.43,5.13,the right lab for your lecture
+1772.53,5.55,the labs open up right in your browser I
+1775.56,5.25,would recommend to use google chrome
+1778.08,4.8,while working with the labs the
+1780.81,4.5,interface consists of two parts a
+1782.88,4.89,terminal on the left and a quiz portal
+1785.31,4.23,on the right the cooze portal on the
+1787.77,3.9,right gives you challenges to solve
+1789.54,4.29,follow the quiz and try and answer the
+1791.67,4.98,questions asked and complete the tasks
+1793.83,5.19,given to you each scenario consists of
+1796.65,4.35,anywhere from 10 to 20 questions that
+1799.02,4.92,needs to be answered within 30 minutes
+1801,4.95,to an hour at the top you have the
+1803.94,4.2,question numbers below that is the
+1805.95,3.06,remaining time for your lab below that
+1808.14,2.73,is the question
+1809.01,4.2,if you're not able to solve the
+1810.87,4.53,challenge look for hints in the hints
+1813.21,4.08,section you may skip a question by
+1815.4,4.56,hitting the skip button in the top right
+1817.29,5.19,corner but remember that you will not be
+1819.96,5.43,able to go back to a previous question
+1822.48,5.43,once you have skipped if the quiz portal
+1825.39,5.73,gets stuck for some reason click on the
+1827.91,9.84,quiz portal tab at the top to open the
+1831.12,7.439,quiz portal in a separate window the
+1837.75,2.85,terminal
+1838.559,4.5,gives you access to a real system
+1840.6,4.47,running docker you can run any docker
+1843.059,4.5,command here and run your own containers
+1845.07,4.29,or applications you would typically be
+1847.559,4.771,running commands to solve the tasks
+1849.36,4.26,assigned in the quiz portal you may play
+1852.33,3.419,around and experiment with this
+1853.62,4.23,environment but make sure you do that
+1855.749,4.231,after you've gone through the quiz so
+1857.85,5.789,that your work does not interfere with
+1859.98,6.24,the tasks provided by the quiz so let me
+1863.639,4.981,walk you through a few questions there
+1866.22,4.14,are two types of questions each lab
+1868.62,4.259,scenario starts with a set of
+1870.36,4.86,exploratory multiple-choice questions
+1872.879,4.26,where you're asked to explore and find
+1875.22,5.22,information in the given environment and
+1877.139,5.461,select the right answer this is to get
+1880.44,4.26,you familiarized with a set up you are
+1882.6,5.1,then asked to perform tasks like run a
+1884.7,6.75,container stop them delete them build
+1887.7,5.76,your own image etc here the first
+1891.45,4.16,question asks us to find the version of
+1893.46,4.86,docker server engine running on the host
+1895.61,4.98,run the docker reversion command in the
+1898.32,4.77,terminal and identify the right version
+1900.59,6.909,then select the appropriate option from
+1903.09,7.169,the given choices another example is the
+1907.499,6.66,fourth question where it asks you to run
+1910.259,6.181,a container using the Redis image if
+1914.159,5.64,you're not sure of the command click on
+1916.44,5.4,hints and it will show you a hint we now
+1919.799,4.171,run in Redis container using the docker
+1921.84,4.679,run readies command wait for the
+1923.97,5.699,container to run once done click on
+1926.519,4.951,check to check your work we have now
+1929.669,4.14,successfully completed the task
+1931.47,5.209,similarly follow along and complete all
+1933.809,5.19,tasks once the lab exercise is completed
+1936.679,4.38,remember to leave a feedback and let us
+1938.999,5.28,know how it went a few things to note
+1941.059,5.59,these are publicly accessible labs that
+1944.279,5.15,anyone can access so if you catch
+1946.649,6.081,yourself logged out during a peak hour
+1949.429,6.58,please wait for some time and try again
+1952.73,5.789,also remember to not store any private
+1956.009,5.67,or confidential data on these systems
+1958.519,5.5,remember that this environment is for
+1961.679,4.771,learning purposes only and is only alive
+1964.019,6.27,for an hour after which the lab is
+1966.45,4.24,destroyed so does all your work but you
+1970.289,3.071,missed
+1970.69,5.64,/ and access these labs as many times as
+1973.36,5.25,you want until you feel confident I will
+1976.33,4.86,also post solutions to these lab quizzes
+1978.61,5.46,so if you run into issues you may refer
+1981.19,4.98,to those that's it for now head over to
+1984.07,13.05,the first challenge and I will see you
+1986.17,14.1,on the other side we will now look at
+1997.12,4.56,some of the other docker run commands at
+2000.27,2.97,the end of this lecture you will go
+2001.68,4.29,through a hands-on quiz where you will
+2003.24,5.79,practice working with these commands we
+2005.97,4.95,learned that we could use the docker run
+2009.03,4.41,Redis command to run the container
+2010.92,4.8,running a Redis service in this case the
+2013.44,6.36,latest version of Redis which happens to
+2015.72,6.12,be 5.0 to 5 as of today but what if we
+2019.8,4.65,want to run another version of Redis
+2021.84,6,like for example and older versions say
+2024.45,6.96,4.0 then you specify the version
+2027.84,7.83,separated by a colon this is called a
+2031.41,7.08,tag in that case docker pulls an image
+2035.67,6.75,of the 4.0 version of Redis and runs
+2038.49,6.6,that also notice that if you don't
+2042.42,5.49,specify any tag as in the first command
+2045.09,7.05,docker will consider the default tag to
+2047.91,6.02,be latest latest is a tag associated to
+2052.14,4.5,the latest version of that software
+2053.93,6.73,which is governed by the authors of that
+2056.64,6.33,software so as a user how do you find
+2060.66,6.33,information about these versions and
+2062.97,6.99,what is the latest at docker hub com
+2066.99,5.33,look up an image and you will find all
+2069.96,4.89,the supported tags in its description
+2072.32,5.2,each version of the software can have
+2074.85,7.17,multiple short and long tags associated
+2077.52,7.5,with it as seen here in this case the
+2082.02,5.27,version fight of 0.5 also has the latest
+2085.02,6.45,tag on it
+2087.29,7.06,let's now look at inputs I have a simple
+2091.47,5.61,prompt application that when run asks
+2094.35,6.29,for my name and on entering my name
+2097.08,5.989,prints a welcome message if I were to
+2100.64,5.399,this application and run it as a docker
+2103.069,5.611,container like this it wouldn't wait for
+2106.039,4.441,the prompt it just prints whatever the
+2108.68,5.46,application is supposed to print on
+2110.48,6.69,standard out that is because by default
+2114.14,5.58,the docker container does not listen to
+2117.17,5.25,a standard input even though you are
+2119.72,5.549,attached to its console it is not able
+2122.42,5.46,to read any input from you it doesn't
+2125.269,6.391,have a terminal to read inputs from it
+2127.88,5.37,runs in an own interactive mode if you'd
+2131.66,4.74,like to provide your input
+2133.25,5.789,you must map the standard input of your
+2136.4,5.369,host to the docker container using the -
+2139.039,5.371,I parameter the - I parameter is for
+2141.769,6.51,interactive mode and when I input my
+2144.41,5.369,name it prints the expected output but
+2148.279,6.81,there is something still missing from
+2149.779,8.941,this the prompt when we run the app at
+2155.089,6.361,first it asked us for our name but when
+2158.72,4.71,docker iced that prompt is missing even
+2161.45,5.159,though it seems to have accepted my
+2163.43,6.089,input that is because the application
+2166.609,6.631,prompt on the terminal and we have not
+2169.519,7.381,attached to the containers terminal for
+2173.24,8.22,this use the - T option as well the - T
+2176.9,7.74,stands for a sudo terminal so with the
+2181.46,5.22,combination of - int we are now attached
+2184.64,5.219,to the terminal as well as in an
+2186.68,5.579,interactive mode on the container we
+2189.859,5.16,will now look at port mapping or port
+2192.259,4.921,publishing on containers let's go back
+2195.019,4.35,to the example where we run a simple web
+2197.18,4.859,application in a docker container on my
+2199.369,5.19,daugher host remember the underlying
+2202.039,5.82,host where docker is installed is called
+2204.559,5.641,docker host or docker engine when we run
+2207.859,4.5,a containerized web application it runs
+2210.2,5.28,and we are able to see that the server
+2212.359,5.94,is running but how does a user access my
+2215.48,6.539,application as you can see my
+2218.299,5.611,application is listening on port 5000 so
+2222.019,6.481,I could access my application by using
+2223.91,7.29,port 5000 but what IP do I use to access
+2228.5,5.789,it from a web browser there are two
+2231.2,5.069,options available one is to use the IP
+2234.289,4.38,the docker container every docker
+2236.269,7.17,container gets an IP assigned by default
+2238.669,7.56,in this case it is 172 dot 17.0 2 but
+2243.439,4.92,remember that this is an internal IP and
+2246.229,4.921,is only accessible within the docker
+2248.359,5.18,host so if you open a browser from
+2251.15,6.199,within the docker host you can go to
+2253.539,9.4,http colon forward slash forward slash
+2257.349,9.281,"172 dot 17 dot 0 dot 1 colon 5,000 to"
+2262.939,6.78,access the IP address but since this is
+2266.63,5.039,an internal IP users outside of the
+2269.719,5.7,docker host cannot access it using this
+2271.669,5.85,IP for this we could use the IP of the
+2275.419,5.491,docker host which is one ninety two dot
+2277.519,6.21,one sixty eight dot 1.5 but for that to
+2280.91,5.309,work you must have mapped the port
+2283.729,5.94,inside the docker container to a free
+2286.219,5.49,port on the docker host for example if I
+2289.669,4.32,want the users to access my application
+2291.709,6.12,through port 80 on my docker host I
+2293.989,6.78,could map port 80 of localhost to port
+2297.829,6.15,5000 on the docker container using the
+2300.769,7.41,dash P parameter in my run command like
+2303.979,7.161,this and so the user can access my
+2308.179,6,application by going to the URL HTTP
+2311.14,5.949,colon slash slash one ninety two dot one
+2314.179,7.05,sixty eight dot one dot five colon 80
+2317.089,7.71,and all traffic on port 80 on my daugher
+2321.229,7.32,host will get routed to port 5000 inside
+2324.799,5.581,the docker container this way you can
+2328.549,3.93,run multiple instances of your
+2330.38,4.889,application and map them to different
+2332.479,5.04,ports on the docker host or run
+2335.269,4.71,instances of different applications on
+2337.519,5.25,different ports for example in this case
+2339.979,5.25,and running an instance of MySQL that
+2342.769,5.25,runs a database on my host and listens
+2345.229,5.97,on the default MySQL port which happens
+2348.019,7.621,to be three 3:06 or another instance of
+2351.199,6.451,MySQL on another port eight 3:06 so you
+2355.64,4.619,can run as many applications like this
+2357.65,5.49,and map them to as many ports as you
+2360.259,4.77,want and of course you cannot map to the
+2363.14,4.919,same port on the docker host more than
+2365.029,4.77,once we will
+2368.059,3.15,because more about port mapping and
+2369.799,4.29,networking of containers in the
+2371.209,5.85,networked lecture later on let's now
+2374.089,6.15,look at how data is persisted in a
+2377.059,5.88,docker container for example let's say
+2380.239,5.04,you were to run a MySQL container when
+2382.939,5.701,databases and tables are created the
+2385.279,6.651,data files are stored in location /wor
+2388.64,5.879,Labe MySQL inside the docker container
+2391.93,5.529,remember the docker container has its
+2394.519,6.23,own isolated filesystem and any changes
+2397.459,6.51,to any files happen within the container
+2400.749,5.891,let's assume you dump a lot of data into
+2403.969,5.22,the database what happens if you were to
+2406.64,5.879,delete the MySQL container and remove it
+2409.189,5.971,as soon as you do that the container
+2412.519,6.18,along with all the data inside it gets
+2415.16,6.779,blown away meaning all your data is gone
+2418.699,5.58,if you would like to persist data you
+2421.939,4.59,would want to map a directory outside
+2424.279,4.891,the container on the docker host to a
+2426.529,5.851,directory inside the container in this
+2429.17,8.49,case I create a directory called /opt
+2432.38,8.609,slash data dir and map that to var Lib
+2437.66,5.879,MySQL inside the docker container using
+2440.989,4.95,the - V option and specifying the
+2443.539,4.68,directory on the door host followed by a
+2445.939,3.59,colon and the directory inside the
+2448.219,4.47,crocker container
+2449.529,5.83,this way when docker container runs it
+2452.689,5.28,will implicitly mount the external
+2455.359,5.61,directory to a folder inside the docker
+2457.969,5.84,container this way all your data will
+2460.969,6.75,now be stored in the external volume at
+2463.809,6.101,/opt slash data directory and thus will
+2467.719,6.03,remain even if you delete the docker
+2469.91,5.459,container the docker PS command is good
+2473.749,4.921,enough to get basic details about
+2475.369,4.89,containers like their names and ID's but
+2478.67,4.439,if you would like to see additional
+2480.259,5.01,details about a specific container use
+2483.109,5.521,the docker inspect command and provide
+2485.269,5.91,the container name or ID it returns all
+2488.63,5.52,details of a container in a JSON format
+2491.179,6.42,such as the state Mounds configuration
+2494.15,5.309,data network settings etc remember to
+2497.599,4.261,use it when you are required to find
+2499.459,4.771,details on a container
+2501.86,4.65,finally how do we see the logs of a
+2504.23,4.02,container we're on in the background for
+2506.51,5.13,example I ran my simple web application
+2508.25,6.42,using the - D parameter and it ran the
+2511.64,5.1,container in a detached mode how do I
+2514.67,4.02,view the logs which happens to be the
+2516.74,5.25,contents written to the standard out of
+2518.69,5.73,that container use the docker logs
+2521.99,6.63,command and specify the container ID or
+2524.42,6.24,name like this well that's it for this
+2528.62,14.64,lecture head over to the challenges and
+2530.66,14.25,practice working with docker commands so
+2543.26,5.01,to start with a simple web application
+2544.91,5.49,written in Python this piece of code is
+2548.27,4.11,used to create a web application that
+2550.4,4.56,displays a web page with a background
+2552.38,5.04,color if you look closely into the
+2554.96,4.41,application code you will see a line
+2557.42,5.7,that sets the background color to red
+2559.37,5.91,now that works just fine however if you
+2563.12,3.99,decide to change the color in the future
+2565.28,5.28,you will have to change the application
+2567.11,5.7,code it is a best practice to move such
+2570.56,4.71,information out of the application code
+2572.81,6.15,and into say an environment variable
+2575.27,5.67,called app color the next time you run
+2578.96,4.35,the application set an environment
+2580.94,5.1,variable called app color to a desired
+2583.31,5.43,value and the application now has a new
+2586.04,5.16,color once your application gets
+2588.74,4.92,packaged into a docker image you will
+2591.2,4.14,then run it with the docker run command
+2593.66,4.5,followed by the name of the image
+2595.34,5.58,however if you wish to pass the
+2598.16,5.55,environment variable as we did before he
+2600.92,5.22,would now use the docker run commands -
+2603.71,6.09,II option to set an environment variable
+2606.14,5.79,within the container to deploy multiple
+2609.8,4.26,containers with different colors he
+2611.93,4.5,would run the docker command multiple
+2614.06,6.06,times and set a different value for the
+2616.43,6.33,environment variable each time so how do
+2620.12,5.91,you find the environment variable set on
+2622.76,6.03,a container that's already running use
+2626.03,4.4,the docker inspect command to inspect
+2628.79,4.08,the properties of a running container
+2630.43,5.26,under the config section you will find
+2632.87,5.19,the list of environment variables
+2635.69,4.62,on the container well that's it for this
+2638.06,3.94,lecture on configuring environment
+2640.31,10.61,variables in docker
+2642,11.45,[Music]
+2650.92,6.07,hello and welcome to this lecture on
+2653.45,5.639,docker images in this lecture we're
+2656.99,6.03,going to see how to create your own
+2659.089,6.51,image now before that why would you need
+2663.02,5.309,to create your own image it could either
+2665.599,5.041,be because you cannot find a component
+2668.329,4.53,or a service that you want to use as
+2670.64,4.979,part of your application on docker hub
+2672.859,4.381,already or you and your team decided
+2675.619,4.95,that the application you're developing
+2677.24,6.72,will be derived for ease of shipping and
+2680.569,6.811,deployment in this case I'm going to
+2683.96,6.09,containerize an application a simple web
+2687.38,6.689,application that I have built using the
+2690.05,6.33,Python flask framework first we need to
+2694.069,4.711,understand what we our container izing
+2696.38,4.77,or what application we are creating an
+2698.78,5.01,image for and how the application is
+2701.15,4.38,built so start by thinking what you
+2703.79,4.38,might do if you want to deploy the
+2705.53,4.819,application manually we write down the
+2708.17,4.83,steps required in the right order I'm
+2710.349,5.081,creating an image for a simple web
+2713,5.01,application if I were to set it up
+2715.43,5.79,manually I would start with an operating
+2718.01,5.579,system like Ubuntu then update the
+2721.22,5.01,source repositories using the apt
+2723.589,5.371,command then install dependencies using
+2726.23,5.58,the apt command then install Python
+2728.96,4.59,dependencies using the PIP command then
+2731.81,4.95,copy over the source code of my
+2733.55,6.24,application to a location like opt and
+2736.76,5.67,then finally run the web server using
+2739.79,5.34,the flask command now that I have the
+2742.43,5.13,instructions create a docker file using
+2745.13,5.61,this here's a quick overview of the
+2747.56,6.18,process of creating your own image first
+2750.74,5.19,create a docker file named docker file
+2753.74,5.22,and write down the instructions for
+2755.93,5.61,setting up your application in it such
+2758.96,5.43,as installing dependencies where to copy
+2761.54,5.18,the source code from and to and what the
+2764.39,5.1,entry point of the application is etc
+2766.72,4.81,once done build your image
+2769.49,5.16,using the docker build command and
+2771.53,6.3,specify the docker file as input as well
+2774.65,5.63,as a tag named for the image this will
+2777.83,4.86,create an image locally on your system
+2780.28,5.86,to make it available on the public
+2782.69,6.45,docker hub registry run the docker push
+2786.14,7.05,command and specify the name of the
+2789.14,6.99,image you just created in this case the
+2793.19,6.78,name of the image is my account name
+2796.13,8.37,which is M Amjad followed by the image
+2799.97,6.57,name which is my custom app now let's
+2804.5,5.04,take a closer look at that docker file
+2806.54,4.86,docker file is a text file written in a
+2809.54,4.41,specific format that docker can
+2811.4,6.12,understand it's in an instruction and
+2813.95,6.24,arguments format for example in this
+2817.52,6.36,docker file everything on the left in
+2820.19,7.02,caps is an instruction in this case from
+2823.88,6.39,run copy and entry point are all
+2827.21,5.22,instructions each of these instruct
+2830.27,5.31,docker to perform a specific action
+2832.43,5.28,while creating the image everything on
+2835.58,6.03,the right is an argument to those
+2837.71,6.93,instructions the first line from Ubuntu
+2841.61,6.24,defines what the base OS should be for
+2844.64,6.15,this container every docker image must
+2847.85,5.58,be based off of another image either an
+2850.79,5.46,OS or another image that was created
+2853.43,4.95,before based on an OS you can find
+2856.25,5.01,official releases of all operating
+2858.38,5.64,systems on docker hub it's important to
+2861.26,5.34,note that all docker files must start
+2864.02,5.25,with a from instruction the run
+2866.6,5.46,instruction instructs docker to run a
+2869.27,6.15,particular command on those base images
+2872.06,5.91,so at this point docker runs the apt-get
+2875.42,4.95,update commands to fetch the updated
+2877.97,5.7,packages and installs required
+2880.37,5.64,dependencies on the image then the copy
+2883.67,5.07,instruction copies files from the local
+2886.01,4.71,system onto the docker image in this
+2888.74,4.23,case the source code of our application
+2890.72,4.89,is in the current folder and I will be
+2892.97,5.27,copying it over to the location opt
+2895.61,6.06,source code inside the docker image and
+2898.24,4.69,finally entry point allows us to specify
+2901.67,3.78,a command
+2902.93,7.05,that will be run when the image is run
+2905.45,6.54,as a container when docker builds the
+2909.98,4.799,images it builds these in a layered
+2911.99,5.309,architecture each line of instruction
+2914.779,4.381,creates a new layer in the docker image
+2917.299,5.191,with just the changes from the previous
+2919.16,7.8,layer for example the first layer is a
+2922.49,6.66,base Ubuntu OS followed by the second
+2926.96,4.829,instruction that creates a second layer
+2929.15,4.62,which installs all the apt packages and
+2931.789,3.78,then the third instruction creates a
+2933.77,4.38,third layer with the Python packages
+2935.569,4.891,followed by the fourth layer that copies
+2938.15,4.379,the source code over and the final layer
+2940.46,5.339,that updates the entry point of the
+2942.529,5.55,image since each layer only stores the
+2945.799,4.98,changes from the previous layer it is
+2948.079,5.371,reflected in the size as well if you
+2950.779,6.75,look at the base opened to image it is
+2953.45,7.02,around 120 MB in size the apt packages
+2957.529,5.611,that I install is around 300 MB and the
+2960.47,4.53,remaining layers are small you could see
+2963.14,4.439,this information if you run the docker
+2965,9.52,history command followed by the image
+2967.579,8.771,name when you run the
+2974.52,3.81,Bilka man you could see the various
+2976.35,5.19,steps involved and the result of each
+2978.33,5.19,task all the layers built are cast
+2981.54,4.2,so the layered architecture helps you
+2983.52,5.04,restart docker built from that
+2985.74,4.77,particular step in case it fails or if
+2988.56,4.23,you were to add new steps in the build
+2990.51,9.33,process you wouldn't have to start all
+2992.79,10.02,over again all the layers built are
+2999.84,5.94,cached by docker so in case a particular
+3002.81,6.09,step was to fail for example in this
+3005.78,6.089,case step three failed and you were to
+3008.9,5.58,fix the issue and rerun docker bill it
+3011.869,4.891,will reuse the previous layers from
+3014.48,5.46,cache and continue to build the
+3016.76,5.43,remaining layers the same is true if you
+3019.94,5.34,were to add additional steps in the
+3022.19,6.21,docker file this way rebuilding your
+3025.28,5.4,image is faster and you don't have to
+3028.4,5.43,wait for docker to rebuild the entire
+3030.68,5.07,image each time this is helpful
+3033.83,4.17,especially when you update source code
+3035.75,5.25,of your application as it may change
+3038,7.31,more frequently only the layers above
+3041,4.31,the updated layers needs to be rebuilt
+3047.71,6.12,we just saw a number of products
+3050.6,6.45,containerized such as databases
+3053.83,6.01,development tools operating systems etc
+3057.05,4.77,but that's just not it you can
+3059.84,4.14,containerized almost all of the
+3061.82,4.94,application even simple ones like
+3063.98,6.18,browsers or utilities like curl
+3066.76,5.62,applications like Spotify Skype etc
+3070.16,5.34,basically you can containerize
+3072.38,4.86,everything and going forward and see
+3075.5,4.859,that's how everyone is going to run
+3077.24,4.379,applications nobody is going to install
+3080.359,3.871,anything anymore
+3081.619,6.061,going forward instead they're just going
+3084.23,4.47,to run it using docker and when they
+3087.68,3.6,don't need it anymore
+3088.7,4.33,get rid of it easily without having to
+3091.28,9.24,clean up too much
+3093.03,11.4,[Music]
+3100.52,6.51,in this lecture we will look at commands
+3104.43,5.939,arguments and entry points in docker
+3107.03,5.2,let's start with a simple scenario say
+3110.369,4.47,you were to run a docker container from
+3112.23,5.43,an Ubuntu image when you run the docker
+3114.839,6.301,run open to command it runs an instance
+3117.66,5.28,of Ubuntu image and exits immediately if
+3121.14,3.93,you were to list the running containers
+3122.94,4.56,you wouldn't see the container running
+3125.07,5.13,if you list all containers including
+3127.5,3.63,those that are stopped you will see that
+3130.2,4.71,the new container
+3131.13,7.709,you ran is in an exited state now why is
+3134.91,6.179,that unlike virtual machines containers
+3138.839,4.681,are not meant to host an operating
+3141.089,6,system containers are meant to run a
+3143.52,5.43,specific task or process such as to host
+3147.089,4.321,an instance of a web server or
+3148.95,4.32,application server or a database or
+3151.41,5.669,simply to carry out some kind of
+3153.27,6.93,computation or analysis once the task is
+3157.079,6.24,complete the container exits a container
+3160.2,6.84,only lives as long as the process inside
+3163.319,6.54,it is alive if the web service inside
+3167.04,5.52,the container is docked or crashes the
+3169.859,5.581,container exits so who defines what
+3172.56,5.009,process is run within the container if
+3175.44,5.07,you look at the docker file for popular
+3177.569,5.671,docker images like ng INX you will see
+3180.51,5.13,an instruction called CMD which stands
+3183.24,4.14,for command that defines the program
+3185.64,5.1,that will be run within the container
+3187.38,5.91,when it starts for the ng INX image it
+3190.74,6.599,is the ng INX command for the MySQL
+3193.29,6.27,image it is the MySQL d command what we
+3197.339,4.711,tried to do earlier was to run a
+3199.56,5.64,container with a plain Ubuntu operating
+3202.05,6.24,system let us look at the docker file
+3205.2,7.409,for this image you will see that it uses
+3208.29,6.84,bash as the default command now bash is
+3212.609,5.73,not really a process like a web server
+3215.13,6.18,or database server it is a shell that
+3218.339,6.451,listens for inputs from a terminal if it
+3221.31,6,cannot find a terminal it exits when we
+3224.79,4.77,ran the ubuntu container earlier
+3227.31,5.76,created a container from the Ubuntu
+3229.56,5.82,image and launched the bash program by
+3233.07,4.71,default docker does not attach a
+3235.38,5.61,terminal to a container when it is run
+3237.78,6.99,and so the bash program does not find
+3240.99,5.46,the terminal and so it exits since the
+3244.77,4.32,process that was started when the
+3246.45,6.09,container was created finished the
+3249.09,6.24,container exits as well so how do you
+3252.54,5.94,specify a different command to start the
+3255.33,5.22,container one option is to append a
+3258.48,4.8,command to the docker run command and
+3260.55,5.13,that way it overrides the default
+3263.28,5.67,command specified within the image in
+3265.68,5.76,this case I run the docker run Ubuntu
+3268.95,5.94,command with the sleep 5 command as the
+3271.44,6.48,added option this way when the container
+3274.89,6.27,starts it runs the sleep program waits
+3277.92,6.06,for 5 seconds and then exits but how do
+3281.16,5.04,you make that change permanent say you
+3283.98,4.86,want the image to always run the sleep
+3286.2,4.86,command when it starts you would then
+3288.84,5.36,create your own image from the base
+3291.06,5.43,ubuntu image and specify a new command
+3294.2,5.29,there are different ways of specifying
+3296.49,6.36,the command either the command simply as
+3299.49,6.63,is in a shell form or in a JSON array
+3302.85,6.57,format like this but remember when you
+3306.12,5.49,specify in a JSON array format the first
+3309.42,4.71,element in the array should be the
+3311.61,5.73,executable in this case the sleep
+3314.13,6.33,program do not specify the command and
+3317.34,5.58,parameters together like this the
+3320.46,5.61,command and its parameters should be
+3322.92,5.52,separate elements in the list so I now
+3326.07,5.46,build my new image using the docker
+3328.44,5.97,build command and name it as Ubuntu
+3331.53,5.97,sleeper I could now simply run the
+3334.41,6.84,docker ubuntu sleeper command and get
+3337.5,7.23,the same results it always sleeps for 5
+3341.25,5.81,seconds and exits but what if I wish to
+3344.73,4.74,change the number of seconds it sleeps
+3347.06,5.83,currently it is hard-coded
+3349.47,6,to 5 seconds as we learned before one
+3352.89,4.92,option is to run the docker run command
+3355.47,4.97,with the new command appended to it in
+3357.81,4.039,this case sleep 10
+3360.44,4.71,so the command that will be run at
+3361.849,5.641,startup will be sleep 10 but it doesn't
+3365.15,5.16,look very good the name of the image
+3367.49,5.01,ubuntu sleeper in itself implies that
+3370.31,4.44,the container will sleep so we shouldn't
+3372.5,4.68,have to specify the sleep command again
+3374.75,6.56,instead we would like it to be something
+3377.18,6.899,like this docker run ubuntu sleeper 10
+3381.31,4.84,we only want to pass in the number of
+3384.079,4.171,seconds the container should sleep and
+3386.15,4.86,sleep command should be invoked
+3388.25,5.18,automatically and that is where the
+3391.01,5.43,entry point instructions comes into play
+3393.43,5.169,the entry point instruction is like the
+3396.44,4.379,command instruction as in you can
+3398.599,4.891,specify the program that will be run
+3400.819,5.311,when the container starts and whatever
+3403.49,5.609,you specify on the command line in this
+3406.13,5.64,case 10 will get appended to the entry
+3409.099,6.691,point so the command that will be run
+3411.77,6.059,when the container starts is sleep 10 so
+3415.79,5.279,that's the difference between the two in
+3417.829,5.76,case of the CMD instruction the command
+3421.069,5.671,line parameters passed will get replaced
+3423.589,5.551,entirely whereas in case of entry point
+3426.74,6.03,the command line parameters will get
+3429.14,6.12,appended now in the second case what if
+3432.77,4.94,I run the ubuntu sleeper image command
+3435.26,6.51,without appending the number of seconds
+3437.71,6.79,then the command at startup will be just
+3441.77,5.339,sleep and you get the error that the
+3444.5,4.95,operand is missing so how do you
+3447.109,5.401,configure a default value for the
+3449.45,5.46,command if one was not specified in the
+3452.51,5.04,command line that's where you would use
+3454.91,5.34,both entry point as well as the command
+3457.55,5.1,instruction in this case the command
+3460.25,5.22,instruction will be appended to the
+3462.65,5.34,entry point instruction so at startup
+3465.47,4.56,the command would be sleep 5 if you
+3467.99,4.95,didn't specify any parameters in the
+3470.03,4.95,command line if you did then that will
+3472.94,4.62,override the command instruction and
+3474.98,4.98,remember for this to happen you should
+3477.56,5.9,always specify the entry point and
+3479.96,6.84,command instructions in a JSON format
+3483.46,6.21,finally what if you freely really want
+3486.8,7.8,to modify the entry point during runtime
+3489.67,8.11,say from sleep to an imaginary sleep 2.0
+3494.6,6.06,well in that case you can override it by
+3497.78,5.76,using the entry point option in the
+3500.66,8.16,docker run command the final command at
+3503.54,7.8,startup would then be sleep 2.0 10 well
+3508.82,13.88,that's it for this lecture and I will
+3511.34,14.67,see you in the next we now look at
+3522.7,5.8,networking in docker when you install
+3526.01,7.44,docker it creates three networks
+3528.5,7.53,automatically bridge no and host bridge
+3533.45,4.83,is the default network a container gets
+3536.03,4.92,attached to if you would like to
+3538.28,4.92,associate the container with any other
+3540.95,4.8,network you specify the network
+3543.2,6.21,information using the network command
+3545.75,7.17,line parameter like this we will now
+3549.41,6.78,look at each of these networks the BRIT
+3552.92,6.21,network is a private internal network
+3556.19,5.52,created by docker on the host all
+3559.13,4.98,containers attached to this network by
+3561.71,6.12,default and they get an internal IP
+3564.11,6.93,address usually in the range 170 2.17
+3567.83,6.53,series the containers can access each
+3571.04,6.21,other using this internal IP if required
+3574.36,6.34,to access any of these containers from
+3577.25,6.06,the outside world map the ports of these
+3580.7,6.45,containers to ports on the docker host
+3583.31,6.45,as we have seen before another way to
+3587.15,4.5,access the containers externally is to
+3589.76,4.98,associate the container to the hosts
+3591.65,5.25,network this takes out any network
+3594.74,4.62,isolation between the docker host and
+3596.9,5.37,the docker container meaning if you were
+3599.36,5.25,"to run a web server on port 5,000 in a"
+3602.27,5.34,web app container it is automatically as
+3604.61,5.55,accessible on the same port externally
+3607.61,5.75,without requiring any port mapping as
+3610.16,6.36,the web container uses the hosts network
+3613.36,6.43,this would also mean that unlike before
+3616.52,5.91,you will now not be able to run multiple
+3619.79,5.79,web containers on the same host on the
+3622.43,5.169,same port as the ports are now common to
+3625.58,6.61,all containers in the hole
+3627.599,7.2,network with the non network the
+3632.19,5.309,containers are not attached to any
+3634.799,5.78,network and doesn't have any access to
+3637.499,8.85,the external network or other containers
+3640.579,8.98,they run in an isolated Network so we
+3646.349,7.351,just saw the default burst network with
+3649.559,6.18,the network ID 170 2.72 0.1 so all
+3653.7,4.409,containers associated to this default
+3655.739,4.83,network will be able to communicate to
+3658.109,4.65,each other but what if we wish to
+3660.569,5.071,isolate the containers within the docker
+3662.759,5.82,host for example the first two web
+3665.64,5.429,containers on internal network 172 and
+3668.579,6.841,the second two containers on a different
+3671.069,7.68,internal network like 182 by default
+3675.42,6.359,docker only creates one internal bridge
+3678.749,5.911,network we could create our own internal
+3681.779,5.22,network using the command docker network
+3684.66,4.98,create and specified the driver which is
+3686.999,4.29,bridge in this case and the subnet for
+3689.64,4.679,that network followed by the custom
+3691.289,6.44,isolated network name run the docker
+3694.319,6.121,network LS command to list all networks
+3697.729,4.81,so how do we see the network settings
+3700.44,5.01,and the IP address assigned to an
+3702.539,5.76,existing container run the docker
+3705.45,4.649,inspect command with the ID or name of
+3708.299,5.22,the container and you will find a
+3710.099,5.16,section on network settings there you
+3713.519,4.26,can see the type of network the
+3715.259,7.161,container is attached to is internal IP
+3717.779,4.641,address MAC address and other settings
+3723.349,5.17,containers can reach each other using
+3725.91,5.22,their names for example in this case I
+3728.519,5.85,have a webserver and a MySQL database
+3731.13,5.639,container running on the same node how
+3734.369,5.25,can I get my web server to access the
+3736.769,5.191,database on the database container one
+3739.619,5.041,thing I could do is to use the internal
+3741.96,7.799,IP address signed to the MySQL container
+3744.66,7.26,which in this case is 170 2.72 0.3 but
+3749.759,4.8,that is not very ideal because it is not
+3751.92,6.419,guaranteed that the container will get
+3754.559,4.281,the same IP when the system reboots the
+3758.339,2.841,right
+3758.84,5.67,way to do it is to use the container
+3761.18,4.53,name all containers in a docker host can
+3764.51,4.02,resolve each other
+3765.71,5.97,with the name of the container docker
+3768.53,5.85,has a built-in DNS server that helps the
+3771.68,3.98,containers to resolve each other using
+3774.38,4.29,the container name
+3775.66,7.77,note that the built in DNS server always
+3778.67,9.05,runs at address 127 dot 0 dot 0 dot 11
+3783.43,7.09,so how does docker implement networking
+3787.72,5.05,what's the technology behind it like how
+3790.52,6.84,are the containers isolated within the
+3792.77,7.38,host docker uses network namespaces that
+3797.36,5.97,creates a separate name space for each
+3800.15,6.95,container it then uses virtual Ethernet
+3803.33,6.87,pairs to connect containers together
+3807.1,5.8,well that's all we can talk about it for
+3810.2,4.8,now more about these or advanced
+3812.9,5.84,concepts that we discussed in the
+3815,6.63,advanced course on docker on code cloud
+3818.74,5.02,that's all for now from this lecture on
+3821.63,3.8,networking head over to the practice
+3823.76,5.1,tests and practice working with
+3825.43,4.77,networking in docker I will see you in
+3828.86,9.489,the next lecture
+3830.2,10.95,[Music]
+3838.349,5.71,hello and welcome to this lecture and we
+3841.15,4.5,are learning advanced docker concepts in
+3844.059,4.43,this lecture we're going to talk about
+3845.65,6,docker storage drivers and file systems
+3848.489,5.83,we're going to see where and how docker
+3851.65,6.27,stores data and how it manages file
+3854.319,6.42,systems of the containers let us start
+3857.92,6.419,with how docker stores data on the local
+3860.739,6.33,file system when you install docker on a
+3864.339,6.96,system it creates this folder structure
+3867.069,7.321,at where lib docker you have multiple
+3871.299,6.66,folders under it called a ufs containers
+3874.39,6.719,image volumes etc this is where docker
+3877.959,4.05,stores all its data by default when I
+3881.109,3.51,say data
+3882.009,4.7,I mean files related to images and
+3884.619,5.37,containers running on the docker host
+3886.709,5.11,for example all files related to
+3889.989,4.29,containers are stored under the
+3891.819,4.621,containers folder and the files related
+3894.279,5.01,to images are stored under the image
+3896.44,4.919,folder any volumes created by the docker
+3899.289,4.44,containers are created under the volumes
+3901.359,4.791,folder well don't worry about that for
+3903.729,5.52,now we will come back to that in a bit
+3906.15,6.099,for now let's just understand where
+3909.249,7.05,docker stores its files and in what
+3912.249,7.08,format so how exactly does docker store
+3916.299,4.98,the files of an image and a container to
+3919.329,5.341,understand that we need to understand
+3921.279,5.401,Dockers layered architecture let's
+3924.67,4.859,quickly recap something we learned when
+3926.68,5.76,docker builds images it builds these in
+3929.529,5.881,a layered architecture each line of
+3932.44,5.789,instruction in the docker file creates a
+3935.41,5.429,new layer in the docker image with just
+3938.229,5.58,the changes from the previous layer for
+3940.839,5.67,example the first layer is a base Ubuntu
+3943.809,5.01,operating system followed by the second
+3946.509,5.401,instruction that creates a second layer
+3948.819,5.341,which installs all the apt packages and
+3951.91,4.829,then the third instruction creates a
+3954.16,4.919,third layer which with the Python
+3956.739,4.59,packages followed by the fourth layer
+3959.079,4.77,that copies the source code over and
+3961.329,6.71,then finally the fifth layer that
+3963.849,4.19,updates the entry point of the image
+3968.57,5.73,each layer only stores the changes from
+3971.93,5.31,the previous layer it is reflected in
+3974.3,6.24,the size as well if you look at the base
+3977.24,6.69,open to image it is around 120 megabytes
+3980.54,6.18,in size the apt packages that I install
+3983.93,6.45,is around 300 MB and then the remaining
+3986.72,5.96,layers are small to understand the
+3990.38,6.57,advantages of this layered architecture
+3992.68,6.67,let's consider a second application this
+3996.95,4.47,application has a different talker file
+3999.35,5.37,but it's very similar to our first
+4001.42,6.66,application as in it uses the same base
+4004.72,6.66,image as Ubuntu uses the same Python and
+4008.08,5.55,flask dependencies but uses a different
+4011.38,5.1,source code to create a different
+4013.63,5.28,application and so a different entry
+4016.48,5.01,point as well when I run the docker
+4018.91,5.28,build command to build a new image for
+4021.49,5.25,this application since the first three
+4024.19,5.61,layers of both the applications are the
+4026.74,6.78,same docker is not going to build the
+4029.8,6.33,first three layers instead it reuses the
+4033.52,5.43,same three layers it built for the first
+4036.13,5.55,application from the cache and only
+4038.95,6.51,creates the last two layers with the new
+4041.68,6.45,sources and the new entry point this way
+4045.46,6.27,docker builds images faster and
+4048.13,5.88,efficiently saves disk space this is
+4051.73,4.89,also applicable if you were to update
+4054.01,5.4,your application code whenever you
+4056.62,6.06,update your application code such as the
+4059.41,5.52,app dot py in this case docker simply
+4062.68,4.65,reuses all the previous layers from
+4064.93,5.13,cache and quickly rebuilds the
+4067.33,6.24,application image by updating the latest
+4070.06,8.55,source code thus saving us a lot of time
+4073.57,7.74,hearing rebuilds and updates let's
+4078.61,5.43,rearrange the layers bottom up so we can
+4081.31,5.19,understand it better at the bottom we
+4084.04,5.94,have the base ubuntu layer than the
+4086.5,5.49,packages then the dependencies and then
+4089.98,5.88,the source code of the application and
+4091.99,6.75,then the entry point all of these layers
+4095.86,6.129,are created when we run the docker build
+4098.74,6.249,command to form the final docker image
+4101.989,6,so all of these are the darker image
+4104.989,4.891,layers once the build is complete you
+4107.989,4.651,cannot modify the contents of these
+4109.88,5.64,layers and so they are read-only and you
+4112.64,6.329,can only modify them by initiating a new
+4115.52,5.73,build when you run a container based off
+4118.969,5.31,of this image using the docker run
+4121.25,5.64,command docker creates a container based
+4124.279,5.19,off of these layers and creates a new
+4126.89,5.969,writable layer on top of the image layer
+4129.469,6.27,the writable layer is used to store data
+4132.859,4.86,created by the container such as log
+4135.739,4.02,files written by the applications any
+4137.719,5.071,temporary files generated by the
+4139.759,6.361,container or just any file modified by
+4142.79,6.12,the user on that container the life of
+4146.12,5.25,this layer though is only as long as the
+4148.91,4.92,container is alive when the container is
+4151.37,5.449,destroyed this layer and all of the
+4153.83,5.759,changes stored in it are also destroyed
+4156.819,5.831,remember that the same image layer is
+4159.589,7.051,shared by all containers created using
+4162.65,6.959,this image if I were to log in to the
+4166.64,6.69,newly created container and say create a
+4169.609,6.061,new file called temp dot txt it will
+4173.33,5.489,create that file in the container layer
+4175.67,5.399,which is read and write we just said
+4178.819,4.23,that the files in the image layer are
+4181.069,5.52,read-only meaning you cannot edit
+4183.049,6.181,anything in those layers let's take an
+4186.589,5.67,example of our application code since we
+4189.23,5.28,bake our code into the image the code is
+4192.259,5.821,part of the image layer and as such is
+4194.51,5.94,read-only after running a container what
+4198.08,5.97,if I wish to modify the source code to
+4200.45,5.789,say test a change remember the same
+4204.05,4.5,image layer may be shared between
+4206.239,5.461,multiple containers created from this
+4208.55,6.27,image so does it mean that I cannot
+4211.7,6.81,modify this file inside the container no
+4214.82,5.97,I can still modify this file but before
+4218.51,4.709,I save the modified file docker
+4220.79,4.89,automatically creates a copy of the file
+4223.219,4.621,in the read/write layer and I will then
+4225.68,5.67,be modifying a different version of the
+4227.84,5.85,file in the readwrite layer all future
+4231.35,4.57,modifications will be done on this copy
+4233.69,5.08,of the file in the readwrite
+4235.92,5.82,this is called copy-on-write mechanism
+4238.77,4.89,the image layer being read-only just
+4241.74,4.83,means that the files in these layers
+4243.66,5.49,will not be modified in the image itself
+4246.57,5.31,so the image will remain the same all
+4249.15,6.96,the time until you rebuild the image
+4251.88,6,using the docker build command what
+4256.11,5.01,happens when we get rid of the container
+4257.88,6.57,all of the data that was stored in the
+4261.12,6.33,container layer also gets deleted the
+4264.45,5.58,change we made to the app dot py and the
+4267.45,6,new temp file we created we'll also get
+4270.03,5.97,removed so what if we wish to persist
+4273.45,4.83,this data for example if we were working
+4276,4.23,with our database and we would like to
+4278.28,4.71,preserve the data created by the
+4280.23,6.27,container we could add a persistent
+4282.99,6.27,volume to the container to do this first
+4286.5,5.76,create a volume using the docker volume
+4289.26,5.73,create command so when I run the docker
+4292.26,5.79,volume create data underscore volume
+4294.99,6.27,command it creates a folder called data
+4298.05,8.1,underscore volume under the var Lib
+4301.26,6.66,docker volumes directory then when I run
+4306.15,4.32,the docker container using the docker
+4307.92,4.77,run command I could mount this volume
+4310.47,5.3,inside the docker containers read/write
+4312.69,6.9,layer using the dash V option like this
+4315.77,6.19,so I would do a docker run - V then
+4319.59,4.92,specify my newly created volume name
+4321.96,5.13,followed by a colon and the location
+4324.51,5.37,inside my container which is the default
+4327.09,6.81,location where MySQL stores data and
+4329.88,7.98,that is where Lib MySQL and then the
+4333.9,6.54,image name MySQL this will create a new
+4337.86,5.7,container and mount the data volume we
+4340.44,5.79,created into very Lib MySQL folder
+4343.56,5.1,inside the container so all data are
+4346.23,4.77,written by the database is in fact
+4348.66,5.4,stored on the volume created on the
+4351,6.93,docker host even if the container is
+4354.06,6.03,destroyed the data is still active now
+4357.93,3.84,what if you didn't run the docker volume
+4360.09,4.44,create command to create the volume
+4361.77,5.16,before the docker run command for
+4364.53,4.62,example if I run the docker run command
+4366.93,5.19,to create a new instance of
+4369.15,5.58,my SQL container with the volume data
+4372.12,5.79,underscore volume to which I have not
+4374.73,6.09,created yet docker will automatically
+4377.91,5.6,create a volume named data underscore
+4380.82,5.34,volume to and mounted to the container
+4383.51,5.59,you should be able to see all these
+4386.16,7.44,volumes if you list the contents of the
+4389.1,7.5,VAR Lib docker volumes folder this is
+4393.6,5.04,called volume mounting as we are
+4396.6,5.12,mounting a volume created by docker
+4398.64,6.69,under the var Lib docker volumes folder
+4401.72,6.16,but what if we had our data already at
+4405.33,4.74,another location for example let's say
+4407.88,5.91,we have some external storage on the
+4410.07,5.7,docker host at four slash data and we
+4413.79,5.19,would like to store database data on
+4415.77,6.42,that volume and not in the default ver
+4418.98,5.4,Lib docker volumes folder in that case
+4422.19,5.55,we would run a container using the
+4424.38,5.79,command docker run - V but in this case
+4427.74,4.74,we will provide the complete path to the
+4430.17,6.63,folder we would like to mount that is
+4432.48,6.54,four slash data for / - QL and so it
+4436.8,5.64,will create a container and mount the
+4439.02,6.39,folder to the container this is called
+4442.44,5.28,bind mounting so there are two types of
+4445.41,5.61,mounts a volume mounting and a bind
+4447.72,5.55,mount volume mount mounts a volume from
+4451.02,5.4,the volumes directory and bind mount
+4453.27,5.38,mounts a directory from any location on
+4456.42,5.53,the docker host
+4458.65,7.5,one final point note before I let you go
+4461.95,7.74,using the dash V is an old style the new
+4466.15,6.36,way is to use dash mount option the dash
+4469.69,5.91,dash mount is the preferred way as it is
+4472.51,5.91,more verbose so you have to specify each
+4475.6,5.7,parameter in a key equals value format
+4478.42,5.04,for example the previous command can be
+4481.3,5.34,written with the dash mount option as
+4483.46,6.33,this using the type source and target
+4486.64,6.24,options the type in this case is bind
+4489.79,5.94,the source is the location on my host
+4492.88,7.95,and target is the location on my
+4495.73,7.28,container so who is responsible for
+4500.83,4.13,doing all of these operations
+4503.01,4.99,maintaining the layered architecture
+4504.96,5.71,creating a writable layer moving files
+4508,6.03,across layers to enable copy and write
+4510.67,6.03,etc it's the storage drivers so Dockery
+4514.03,5.07,uses storage drivers to enable layered
+4516.7,7.92,architecture some of the common storage
+4519.1,8.78,drivers are au FS btrfs ZFS device
+4524.62,5.94,mapper overlay and overlay to the
+4527.88,4.99,selection of the storage driver depends
+4530.56,4.74,on the underlying OS being used for
+4532.87,5.16,example we to bond to the default
+4535.3,4.89,storage driver is a u FS whereas this
+4538.03,4.89,storage driver is not available on other
+4540.19,6.15,operating systems like fedora or Sint OS
+4542.92,6.63,in that case device mapper may be a
+4546.34,5.13,better option docker will choose the
+4549.55,3.9,best storage driver available
+4551.47,4.62,automatically based on the operating
+4553.45,5.31,system the different storage drivers
+4556.09,5.7,also provide different performance and
+4558.76,5.1,stability characteristics so you may
+4561.79,3.87,want to choose one that fits the needs
+4563.86,4.2,of your application and your
+4565.66,4.44,organization if you would like to read
+4568.06,4.29,more on any of these storage drivers
+4570.1,5.52,please refer to the links in the
+4572.35,5.82,attached documentation for now that is
+4575.62,5.61,all from the darker architecture
+4578.17,11.84,concepts see you in the next lecture
+4581.23,11.07,[Music]
+4590.01,6.25,hello and welcome to this lecture on
+4592.3,6.84,docker compose going forward we will be
+4596.26,5.22,working with configurations in yamo file
+4599.14,6.33,so it is important that you are
+4601.48,6.54,comfortable with llamo let's recap a few
+4605.47,4.95,things real quick course we first
+4608.02,5.52,learned how to run a docker container
+4610.42,5.15,using the docker run command if we
+4613.54,5.64,needed to set up a complex application
+4615.57,7.27,running multiple services a better way
+4619.18,5.73,to do it is to use docker compose with
+4622.84,4.95,docker compose we could create a
+4624.91,6.12,configuration file in yamo format called
+4627.79,6.81,docker compose or ml and put together
+4631.03,6.6,the different services and the options
+4634.6,6.57,specific to this to running them in this
+4637.63,5.73,file then we could simply run a docker
+4641.17,5.43,compose up command to bring up the
+4643.36,5.76,entire application stack this is easier
+4646.6,4.71,to implement run and maintain as all
+4649.12,5.49,changes are always stored in the docker
+4651.31,5.37,compose configuration file however this
+4654.61,5.12,is all only applicable to running
+4656.68,6.03,containers on a single docker host and
+4659.73,5.14,for now don't worry about the yamo file
+4662.71,4.62,we will take a closer look at the yamo
+4664.87,5.22,file in a bit and see how to put it
+4667.33,5.34,together that was a really simple
+4670.09,5.43,application that I put together let us
+4672.67,5.04,look at a better example I'm going to
+4675.52,5.34,use the same sample application that
+4677.71,6.15,everyone uses to demonstrate docker it's
+4680.86,5.7,a simple yet comprehensive application
+4683.86,5.04,developed by docker to demonstrate the
+4686.56,4.52,various features available in running an
+4688.9,5.64,application stack on docker
+4691.08,5.74,so let's first get familiarized with the
+4694.54,4.89,application because we will be working
+4696.82,5.54,with the same application in different
+4699.43,5.31,sections through the rest of this course
+4702.36,5.95,this is a sample voting application
+4704.74,6.96,which provides an interface for a user
+4708.31,5.429,to vote and another interface to show
+4711.7,4.47,the results the applique
+4713.739,4.741,consists of various components such as
+4716.17,4.829,the voting app which is a web
+4718.48,5.07,application developed in Python to
+4720.999,5.58,provide the user with an interface to
+4723.55,6.75,choose between two options a cat and a
+4726.579,7.23,dog when you make a selection the vote
+4730.3,5.549,is stored in Redis for those of you who
+4733.809,5.401,are new to Redis Redis in this case
+4735.849,5.701,serves as a database in memory this vote
+4739.21,4.739,is then processed by the worker which is
+4741.55,4.649,an application written in dotnet the
+4743.949,4.65,worker application takes the new vote
+4746.199,6.061,and updates the persistent database
+4748.599,6.69,which is a post-grad SQL in our case the
+4752.26,5.64,Postgres SQL simply has a table with the
+4755.289,5.7,number of votes for each category cats
+4757.9,5.73,and dogs in this case it increments the
+4760.989,5.641,number of votes for cats as our ward was
+4763.63,5.4,for cats finally the result of the vote
+4766.63,4.77,is displayed in a web interface which is
+4769.03,6.029,another web application developed in
+4771.4,5.79,node.js this resulting application reads
+4775.059,5.011,the count of votes from the Postgres
+4777.19,6.179,sequel database and display fit to the
+4780.07,6.509,user so that is the architecture and
+4783.369,6.571,data flow of this simple voting
+4786.579,5.881,application stack as you can see this
+4789.94,4.77,sample application is built with a
+4792.46,5.159,combination of different services
+4794.71,5.34,different development tools and multiple
+4797.619,7.56,different development platforms such as
+4800.05,8.009,Python node.js net etc this sample
+4805.179,5.04,application will be used to showcase how
+4808.059,5.16,easy it is to set up an entire
+4810.219,7.02,application stack consisting of diverse
+4813.219,7.351,components in docker let us keep aside
+4817.239,5.641,docker swarm services and stacks for a
+4820.57,5.609,minute and see how we can put together
+4822.88,7.23,this application stack on a single
+4826.179,7.621,docker engine using first docker run
+4830.11,6.54,commands and then docker compose let us
+4833.8,5.46,assume that all images of applications
+4836.65,5.73,are already built and are available on
+4839.26,5.759,docker repository let us start with the
+4842.38,4.569,data layer first we run the docker run
+4845.019,4.511,command to start an instance
+4846.949,6.241,of redis by running the docker run Redis
+4849.53,5.79,command we will add the - D parameter to
+4853.19,5.539,run this container in the background and
+4855.32,6.62,we will also name the container Redis
+4858.729,5.171,now naming the containers is important
+4861.94,4,why is that important
+4863.9,5.279,hold that thought we will come to that
+4865.94,5.579,in a bit next we will deploy the
+4869.179,6.3,Postgres sequel database by running the
+4871.519,7.051,docker run Postgres command this time -
+4875.479,5.1,we will add the - d option to run this
+4878.57,6.149,in the background and name this
+4880.579,7.051,container DB for database next we will
+4884.719,4.74,start with the application services we
+4887.63,3.839,will deploy a front-end app for voting
+4889.459,5.071,interface by running an instance of
+4891.469,6.15,voting app image run the docker run
+4894.53,5.339,command and name the instance vote since
+4897.619,5.1,this is a web server it has a web UI
+4899.869,5.19,instance running on port 80 we will
+4902.719,4.681,publish that port to 5000 on the host
+4905.059,5.16,system so we can access it from a
+4907.4,5.489,browser next we will deploy the result
+4910.219,5.371,web application that shows the results
+4912.889,5.67,to the user for this we deploy a
+4915.59,6.42,container using the results - app image
+4918.559,6.21,and publish port 80 - port 5001 on the
+4922.01,5.359,host this way we can access the web UI
+4924.769,5.25,of the resulting app on a browser
+4927.369,6.48,finally we deployed the worker by
+4930.019,7.44,running an instance of the worker image
+4933.849,5.951,okay now this is all good and we can see
+4937.459,6.06,that all the instances are running on
+4939.8,6.419,the host but there is some problem it
+4943.519,5.37,just does not seem to work the problem
+4946.219,4.86,is that we have successfully run all the
+4948.889,5.4,different containers but we haven't
+4951.079,5.46,actually linked them together as in we
+4954.289,4.71,haven't told the voting web application
+4956.539,5.401,to use this particular Redis instance
+4958.999,5.881,there could be multiple Redis instances
+4961.94,5.369,running we haven't told the worker and
+4964.88,6.06,the resulting app to use this particular
+4967.309,6.42,Postgres sequel database that we ran so
+4970.94,6.449,how do we do that that is where we use
+4973.729,6.571,links link is a command line option
+4977.389,3.58,which can be used to link to containers
+4980.3,4.299,to
+4980.969,7.081,for example the voting app web service
+4984.599,5.67,is dependent on the Redis service when
+4988.05,5.039,the web server starts as you can see in
+4990.269,5.19,this piece of code on the web server it
+4993.089,5.91,looks for a Redis service running on
+4995.459,6.301,host Redis but the voting app container
+4998.999,5.67,cannot resolve a host by the name Redis
+5001.76,6,to make the voting app aware of the
+5004.669,5.43,Redis service we add a link option while
+5007.76,5.669,running the voting app container to link
+5010.099,5.67,it to the Redis container adding a - -
+5013.429,4.77,link option to the docker run command
+5015.769,4.65,and specifying the name of the Redis
+5018.199,5.01,container which is which in this case is
+5020.419,4.89,Redis followed by a colon and the name
+5023.209,4.801,of the host that the voting app is
+5025.309,6.54,looking for which is also Redis in this
+5028.01,6.389,case remember that this is why we named
+5031.849,5.04,the container when we ran it the first
+5034.399,5.97,time so we could use its name while
+5036.889,6.121,creating a link what this is in fact
+5040.369,4.8,doing is it creates an entry into the
+5043.01,4.5,etc' host file on the voting app
+5045.169,4.77,container adding an entry with a host
+5047.51,3.979,name rebus with an internal IP of the
+5049.939,4.77,Redis container
+5051.489,5.53,similarly we add a link for the result
+5054.709,5.071,app to communicate with the database by
+5057.019,6.12,adding a link option to refer the
+5059.78,5.399,database by the name DB as you can see
+5063.139,4.35,in this source code of the application
+5065.179,6.96,it makes an attempt to connect to a
+5067.489,6.78,Postgres database on hosts DB finally
+5072.139,4.53,the worker application requires access
+5074.269,5.7,to both the Redis as well as the
+5076.669,6.33,Postgres database so we add two links to
+5079.969,4.89,the worker application one link to link
+5082.999,6.93,the Redis and the other link to link
+5084.859,7.86,Postgres database note that using links
+5089.929,6.81,this way is deprecated and the support
+5092.719,6.77,may be removed in future in docker this
+5096.739,5.46,is because as we will see in some time
+5099.489,5.26,advanced and newer concepts in docker
+5102.199,5.4,swarm and networking supports better
+5104.749,5.61,ways of achieving what we just did here
+5107.599,5.46,with links but I wanted to mention that
+5110.359,3.26,anyway so you learned the concept from
+5113.059,3.83,the very
+5113.619,5.73,basics once we have the docker run
+5116.889,4.56,commands tested and ready it is easy to
+5119.349,4.861,generate a docker compose file from it
+5121.449,4.98,we start by creating a dictionary of
+5124.21,4.38,container names we will use the same
+5126.429,4.531,name we used in the docker run commands
+5128.59,5.279,so we take all the names and create a
+5130.96,6.929,key with each of them then under each
+5133.869,6.901,item we specify which image to use the
+5137.889,6.421,key is the image and the value is the
+5140.77,5.099,name of the image to use next inspect
+5144.31,4.98,the commands and see what are the other
+5145.869,5.821,options used we published ports so let's
+5149.29,5.159,move those ports under the respective
+5151.69,4.98,containers so we create a property
+5154.449,4.02,called ports and lists all the ports
+5156.67,5.79,that you would like to publish under
+5158.469,6,that finally we are left with links so
+5162.46,4.679,whichever container requires a link
+5164.469,5.041,created properly under it called links
+5167.139,7.23,and provide an array of links such as
+5169.51,7.439,Redis or TB note that you could also
+5174.369,5.401,specify the name of the link this way
+5176.949,5.701,without the semicolon and and the target
+5179.77,5.96,target name and it will create a link
+5182.65,6.42,with the same name as the target name
+5185.73,7.36,specifying the DB : DB is similar to
+5189.07,7.919,simply specify DB we will assume the
+5193.09,5.37,same value to create a link now that we
+5196.989,3.871,are all done with our docker compose
+5198.46,4.59,file bringing up the stack is really
+5200.86,3.93,simple from the docker compose up
+5203.05,9.89,command to bring up the entire
+5204.79,10.01,application stack when we looked
+5212.94,5.46,example of the sample voting application
+5214.8,6.48,we assumed that all images are already
+5218.4,5.43,built out of the five different
+5221.28,4.77,components two of them Redis and
+5223.83,4.83,Postgres images we know are already
+5226.05,5.87,available on docker hub there are
+5228.66,5.97,official images from Redis and Postgres
+5231.92,5.44,but the remaining three are our own
+5234.63,4.89,application it is not necessary that
+5237.36,4.859,they are already built and available in
+5239.52,5.67,a docker registry if we would like to
+5242.219,5.221,instruct docker compose to run a docker
+5245.19,5.279,bill instead of trying to pull an image
+5247.44,5.73,we can replace the image line with a
+5250.469,5.191,build line and specify the location of a
+5253.17,5.279,directory which contains the application
+5255.66,5.49,code and a docker file with instructions
+5258.449,5.581,to build the docker image in this
+5261.15,5.7,example for the voting app I have all
+5264.03,5.75,the application code in a folder named
+5266.85,6.84,vote which contains all application code
+5269.78,5.8,and a docker file this time when you run
+5273.69,5.07,the docker compose up command it will
+5275.58,6.27,first build the images give a temporary
+5278.76,5.25,name for it and then use those images to
+5281.85,6.59,run containers using the options you
+5284.01,7.77,specified before similarly use build
+5288.44,8.35,option to build the two other services
+5291.78,7.41,from the respective folders we will now
+5296.79,4.86,look at different versions of docker
+5299.19,5.279,compose file this is important because
+5301.65,5.4,you might see docker compose files in
+5304.469,5.181,different formats at different places
+5307.05,6.09,and wonder white-sand look different
+5309.65,6.13,docker compose evolved over time and now
+5313.14,5.7,supports a lot more options than it did
+5315.78,5.4,in the beginning for example this is the
+5318.84,5.399,trimmed down version of the docker
+5321.18,5.76,compose file we used earlier this is in
+5324.239,6.661,fact the original version of docker
+5326.94,6.33,compose file known as version 1 this had
+5330.9,4.65,a number of limitations for example if
+5333.27,5.28,you wanted to deploy containers on a
+5335.55,5.58,different network other than the default
+5338.55,4.919,Bridge network there was no way of
+5341.13,5.579,specifying that in this version of the
+5343.469,5.13,file also say you have a dependency
+5346.709,4.321,or startup order of some kind for
+5348.599,4.92,example your database container must
+5351.03,5.04,come up first and only then and should
+5353.519,4.62,the voting application be started there
+5356.07,5.779,was no way you could specify that in the
+5358.139,7.891,ocean one of the docker compose file
+5361.849,7.39,support for these came in version 2 with
+5366.03,5.1,version 2 and up the format of the file
+5369.239,4.86,also changed a little bit
+5371.13,5.04,you no longer specify your stack
+5374.099,5.67,information directly as you did before
+5376.17,6.119,it is all encapsulated in a Services
+5379.769,4.95,section so create a property called
+5382.289,5.1,services in the root of the file and
+5384.719,5.94,then move all the services underneath
+5387.389,5.371,that you will still use the same docker
+5390.659,5.34,compose up command to bring up your
+5392.76,5.699,application stack but how does docker
+5395.999,5.281,compose know what version of the file
+5398.459,5.28,you're using you're free to use version
+5401.28,6.39,1 or version 2 depending on your needs
+5403.739,7.59,so how does the docker compose know what
+5407.67,6.509,format you are using for version 2 and
+5411.329,5.04,up you must specify the version of
+5414.179,4.98,docker compose file you are intending to
+5416.369,7.82,use by specifying the version at the top
+5419.159,8.67,of the file in this case version : 2
+5424.189,7.03,another difference is with networking in
+5427.829,6.301,version 1 docker compose attaches all
+5431.219,6.72,the containers it runs to the default
+5434.13,5.429,bridged Network and then use links to
+5437.939,4.83,enable communication between the
+5439.559,6.451,containers as we did before with version
+5442.769,5.761,2 dr. Campos automatically creates a
+5446.01,5.04,dedicated bridged Network for this
+5448.53,6.12,application and then attaches all
+5451.05,5.879,containers to that new network all
+5454.65,5.13,containers are then able to communicate
+5456.929,3.331,to each other using each other's service
+5459.78,3.54,name
+5460.26,6.179,so you basically don't need to use links
+5463.32,5.609,in version 2 of docker compose you can
+5466.439,5.191,simply get rid of all the links you
+5468.929,6.271,mentioned in version 1 when you convert
+5471.63,6.48,a file from version one to version two
+5475.2,5.64,and finally Washington also introduces
+5478.11,5.4,it depends on feature if you wish to
+5480.84,5.01,specify a start-up order for instance
+5483.51,5.19,say the watering web application is
+5485.85,5.22,dependent on the Redis service so you
+5488.7,5.01,need to ensure that Redis container is
+5491.07,5.49,started first and only then the voting
+5493.71,5.22,web application must be started we could
+5496.56,5.07,add a depends on property to the voting
+5498.93,8.19,application and indicate that it is
+5501.63,9,dependent on Redis then comes version 3
+5507.12,6.6,which is the latest as of today version
+5510.63,4.59,3 is similar to version 2 in the
+5513.72,3.96,structure meaning it has a version
+5515.22,4.14,specification at the top and a Services
+5517.68,5.37,section under which you put all your
+5519.36,6.21,services just like in version 2 make
+5523.05,6.09,sure to specify the version number as 3
+5525.57,6.03,at the top version 3 comes with support
+5529.14,5.22,for docker swamp which we will see later
+5531.6,5.43,on there are some options that were
+5534.36,4.86,removed and added to see details on
+5537.03,4.59,those you can refer to the documentation
+5539.22,5.19,section using the link in the reference
+5541.62,6.03,page following this lecture we will see
+5544.41,7.32,Worsham 3 in much detail later when we
+5547.65,7.8,discuss about docker stacks let us talk
+5551.73,6.42,about networks in docker compose getting
+5555.45,5.28,back to our application so far we have
+5558.15,6.12,been just deploying all containers on
+5560.73,5.91,the default bridged Network let us say
+5564.27,4.71,we modify the architecture a little bit
+5566.64,4.65,to contain the traffic from the
+5568.98,4.2,different sources for example we would
+5571.29,4.2,like to separate the user generated
+5573.18,4.98,traffic from the applications internal
+5575.49,6.09,traffic so we create a front-end network
+5578.16,5.88,dedicated for traffic from users and a
+5581.58,5.67,back-end network dedicated for traffic
+5584.04,5.82,within the application we then connect
+5587.25,5.4,the user facing applications which are
+5589.86,5.46,the voting app and the result app to the
+5592.65,8.55,front-end network and all the components
+5595.32,9.06,to an internal back-end network so back
+5601.2,5.37,in our docker compose file note that I
+5604.38,4.56,have actually stripped out the port
+5606.57,2.819,section for simplicity sake
+5608.94,2.549,there's
+5609.389,5.071,they're but they're just not shown here
+5611.489,5.161,the first thing we need to do if we were
+5614.46,4.86,to use networks is to define the
+5616.65,5.73,networks we are going to use in our case
+5619.32,5.94,we have two networks front end and back
+5622.38,6.089,end so create a new property called
+5625.26,5.43,networks at the root level adjacent to
+5628.469,4.92,the services in the docker compose file
+5630.69,6.449,and add a map of networks we are
+5633.389,6.27,planning to use then under each service
+5637.139,5.131,create a networks property and provide a
+5639.659,6.871,list of networks that service must be
+5642.27,7.38,attached to in case of Redis and DB it's
+5646.53,5.64,only the back-end network in case of the
+5649.65,4.56,front-end applications such as at the
+5652.17,5.25,voting app and the result app they
+5654.21,6.449,require to be a test to both a front-end
+5657.42,5.64,and back-end Network you must also add a
+5660.659,4.83,section for worker container to be added
+5663.06,4.77,to the back-end Network I have just
+5665.489,5.88,omitted that in this slide you choose
+5667.83,6.15,space constraints now that you have seen
+5671.369,5.1,docker compose files head over to the
+5673.98,5.79,coding exercises and practice developing
+5676.469,6.091,some docker compose files that's it for
+5679.77,15.06,this lecture and I will see you in the
+5682.56,16.65,next lecture we will now look at docker
+5694.83,7.32,registry so what is a registry if the
+5699.21,5.37,containers were the rain then they would
+5702.15,3.45,rain from the docker registry which are
+5704.58,3.539,the clouds
+5705.6,6,that's where docker images are stored
+5708.119,6.391,it's a central repository of all docker
+5711.6,6.119,images let's look at a simple nginx
+5714.51,6.149,container we run the docker run engine X
+5717.719,5.551,command to run an instance of the nginx
+5720.659,6.841,image let's take a closer look at that
+5723.27,6.24,image name now the name is nginx but
+5727.5,4.98,what is this image and where is this
+5729.51,6.3,image pulled from this name follows
+5732.48,6.63,Dockers image naming convention nginx
+5735.81,5.54,here is the image or the repository name
+5739.11,6.23,when you say nginx
+5741.35,6.87,it's actually nginx / nginx the first
+5745.34,5.79,part stands for the user or account name
+5748.22,5.37,so if you don't provide an account or a
+5751.13,4.59,repository name it assumes that it is
+5753.59,5.7,the same as the given name which in this
+5755.72,6.24,case is nginx the user names is usually
+5759.29,4.62,your docker hub account name or if it is
+5761.96,4.65,an organization then it's the name of
+5763.91,5.04,the organization if you were to create
+5766.61,5.49,your own account and create your own
+5768.95,6.3,repositories or images under it then you
+5772.1,5.75,would use a similar pattern now where
+5775.25,5.49,are these images stored and pulled from
+5777.85,4.72,since we have not specified the location
+5780.74,5.13,where these images are to be pulled from
+5782.57,6.69,it is assumed to be on Dockers default
+5785.87,7.02,registry docker hub the dns name for
+5789.26,6,which is dr. al the registry is where
+5792.89,4.56,all the images are stored whenever you
+5795.26,4.95,create a new image or update an existing
+5797.45,4.68,image you push it to the registry and
+5800.21,4.26,every time anyone deploys this
+5802.13,4.8,application it is pulled from that
+5804.47,4.83,registry there are many other popular
+5806.93,4.92,registries as well for example Google's
+5809.3,4.65,registry is that VCR that i/o where a
+5811.85,4.38,lot of kubernetes related images are
+5813.95,4.8,stored like the ones used for performing
+5816.23,5.25,end-to-end tests on the cluster these
+5818.75,6.33,are all publicly accessible images that
+5821.48,5.76,anyone can download and access when you
+5825.08,3.75,have applications built in-house that
+5827.24,2.01,shouldn't be made available to the
+5828.83,3.39,public
+5829.25,5.49,hosting an internal private registry may
+5832.22,4.77,be a good solution many cloud service
+5834.74,5.52,providers such as Arab leaders as your
+5836.99,5.37,GCP provide a private registry by
+5840.26,5.25,default when you open an account with
+5842.36,5.91,them on any of these solutions be a
+5845.51,5.01,docker hub or Google registry or your
+5848.27,4.98,internal private registry you may choose
+5850.52,4.98,to make a repository private so that it
+5853.25,5.58,can only be accessed using a set of
+5855.5,5.64,credentials from Dockers perspective to
+5858.83,5.01,run a container using an image from a
+5861.14,5.04,private registry you first log into your
+5863.84,5.1,private registry using the docker login
+5866.18,4.8,command input your credentials once
+5868.94,4.26,successful run the application using
+5870.98,3.749,private registry as part of the image
+5873.2,3.749,name like this
+5874.729,4.381,now if you did not log into the private
+5876.949,5.221,registry it will come back saying that
+5879.11,5.429,the image cannot be found so remember to
+5882.17,6.059,always log in before pulling or pushing
+5884.539,7.051,to a private registry we said that cloud
+5888.229,5.071,providers like AWS or GCP provide a
+5891.59,3.69,private registry when you create an
+5893.3,4.199,account with them but what if you are
+5895.28,4.709,running your application on-premise and
+5897.499,4.98,don't have a private registry how do you
+5899.989,5.67,deploy your own private registry within
+5902.479,5.76,your organization the docker registry is
+5905.659,5.34,itself another application and of course
+5908.239,5.82,is available as a docker image the name
+5910.999,6.81,of the image is registry and it exposes
+5914.059,6.27,"the API on port 5,000 now that you have"
+5917.809,5.64,your custom registry running at port
+5920.329,7.17,"5,000 on this docker host how do you"
+5923.449,7.23,push your own image to it use the docker
+5927.499,5.73,image tag command to tag the image with
+5930.679,4.8,a private registry URL in it in this
+5933.229,5.421,case since it's running on the same door
+5935.479,7.321,host I can use localhost semi colon
+5938.65,6.339,"5,000 followed by the image name I can"
+5942.8,4.469,then push my image to my local private
+5944.989,4.411,registry using the command docker push
+5947.269,4.801,and the new image name with the docker
+5949.4,5.04,registry information in it from there on
+5952.07,4.77,I can pull my image from anywhere within
+5954.44,5.19,this network using either localhost if
+5956.84,5.369,you're on the same host or the IP or
+5959.63,4.829,domain name of my docker host if I'm
+5962.209,5.01,accessing from another host in my
+5964.459,3.301,environment well that's it for this
+5967.219,2.13,lecture
+5967.76,4.799,hello words of the practice test and
+5969.349,4.181,practice working with private docker
+5972.559,9.811,registries
+5973.53,11.73,[Music]
+5982.37,4.81,welcome to this lecture on docker engine
+5985.26,5.25,in this lecture we will take a deeper
+5987.18,5.7,look at Dockers architecture how it
+5990.51,4.53,actually runs applications in isolated
+5992.88,6.33,containers and how it works under the
+5995.04,6.96,hoods docker engine as we have learned
+5999.21,5.19,before is simply referred to a host with
+6002,5.04,docker installed on it when you install
+6004.4,4.67,docker on a Linux host you're actually
+6007.04,5.64,installing three different components
+6009.07,6.91,the docker demon the rest API server and
+6012.68,5.7,the docker CLI the docker daemon is a
+6015.98,5.16,background process that manages docker
+6018.38,5.79,objects such as the images containers
+6021.14,5.79,volumes and networks the docker REST API
+6024.17,5.01,server is the API interface that
+6026.93,4.5,programs can use to talk to the daemon
+6029.18,4.44,and provide instructions you could
+6031.43,5.31,create your own tools using this REST
+6033.62,5.28,API and the docker CLI is nothing but
+6036.74,4.89,the command-line interface that we've
+6038.9,4.86,been using until now to perform actions
+6041.63,6.06,such as running a container stopping
+6043.76,6.57,containers destroying images etc it uses
+6047.69,6.48,the REST API to interact with the docker
+6050.33,6.9,demon something to note here is that the
+6054.17,5.64,docker CLI need not necessarily be on
+6057.23,5.94,the same host it could be on another
+6059.81,6.93,system like a laptop and can still work
+6063.17,6.36,with a remote docker engine simply use
+6066.74,6.15,the dash 8 option on the docker command
+6069.53,6.36,and specify the remote docker engine
+6072.89,6.42,address and a port as shown here for
+6075.89,6.33,example to run a container based on ng
+6079.31,7.71,INX on a remote docker host run the
+6082.22,16.08,command docker dash H equals 10.1 23
+6087.02,11.9,2000 call n' to 375 run and the Ln X now
+6098.3,3.2,let's try
+6098.92,5.67,understand how exactly our applications
+6101.5,4.05,containerized in docker how does it work
+6104.59,4.05,under the hood
+6105.55,6.3,docker uses namespaces to isolate
+6108.64,6.3,workspace process IDs network
+6111.85,6.21,inter-process communication mounds and
+6114.94,5.759,unix time sharing systems are created in
+6118.06,8.13,their own namespace thereby providing
+6120.699,7.741,isolation between containers let's take
+6126.19,5.73,a look at one of the namespace isolation
+6128.44,6.09,technique process ID namespaces whenever
+6131.92,4.98,a Linux system boots up it starts with
+6134.53,5.16,just one process with a process ID of
+6136.9,4.89,one this is the root process and kicks
+6139.69,4.77,off all the other processes in the
+6141.79,4.83,system by the time the system boots up
+6144.46,5.219,completely we have a handful of
+6146.62,5.76,processors running this can be seen by
+6149.679,6,running the PS command to list all the
+6152.38,6.45,running processes the process IDs are
+6155.679,6.691,unique and two processes cannot have the
+6158.83,6.03,same process ID now if we were to create
+6162.37,4.55,a container which is basically like a
+6164.86,5.58,child system within the current system
+6166.92,5.77,the child system needs to think that it
+6170.44,4.82,is an independent system on its own and
+6172.69,5.37,it has its own set of processes
+6175.26,6.939,originating from a root process with a
+6178.06,6.179,process ID of one but we note that there
+6182.199,4.381,is no hard isolation between the
+6184.239,3.96,containers and the underlying host so
+6186.58,4.17,the processes running inside the
+6188.199,4.621,container or in fact processes running
+6190.75,4.44,on the underlying host and so two
+6192.82,5.76,processes cannot have the same process
+6195.19,6.09,ID of one this is where namespaces come
+6198.58,4.92,into play with process ID namespaces
+6201.28,5.13,each process can have multiple process
+6203.5,4.65,IDs associated with it for example when
+6206.41,3.66,the processes start in the container
+6208.15,4.23,it's actually just another set of
+6210.07,4.98,processes on the base Linux system and
+6212.38,6.33,it gets the next available process ID in
+6215.05,6.39,this case 5 & 6 however they also get
+6218.71,4.95,another process ID starting with PID 1
+6221.44,5.07,in the container name space which is
+6223.66,4.95,only visible inside the container so the
+6226.51,4.77,container thinks that it has its own
+6228.61,3.489,root process tree and so it is an
+6231.28,3.699,independent
+6232.099,5.491,system so how does that relate to an
+6234.979,5.94,actual system how do you see this on a
+6237.59,5.969,host let's say I were to run an ng I
+6240.919,4.05,next server as a container we know that
+6243.559,4.71,the ng r NX container
+6244.969,5.55,runs an ng Aria next service if we were
+6248.269,4.83,to list all the services inside the
+6250.519,5.011,docker container we see that the ng
+6253.099,5.73,ionic service running with a process ID
+6255.53,5.129,of one this is the process ID of the
+6258.829,5.19,service inside of the container
+6260.659,6.09,namespace if we list the services on the
+6264.019,6.18,docker host we will see the same service
+6266.749,6.45,but with a different process ID that
+6270.199,5.82,indicates that all processes are in fact
+6273.199,5.331,running on the same host but separated
+6276.019,7.08,into their own containers using
+6278.53,6.759,namespaces so we learned that the
+6283.099,4.53,underlying docker host as well as the
+6285.289,6.27,containers share the same system
+6287.629,6.09,resources such as CPU and memory how
+6291.559,4.471,much of the resources are dedicated to
+6293.719,4.68,the host and the containers and how does
+6296.03,5.969,docker manage and share the resources
+6298.399,5.76,between the containers by default there
+6301.999,5.281,is no restriction as to how much of a
+6304.159,5.73,resource a container can use and hence a
+6307.28,5.879,container may end up utilizing all of
+6309.889,5.34,the resources on the underlying host but
+6313.159,5.88,there is a way to restrict the amount of
+6315.229,6.66,CPU or memory a container can use docker
+6319.039,4.59,uses C groups or control groups to
+6321.889,4.94,restrict the amount of hardware
+6323.629,6.901,resources allocated to each container
+6326.829,6.37,this can be done by providing the - -
+6330.53,6.089,CPUs option to the docker run command
+6333.199,5.851,providing a value of 0.5 will ensure
+6336.619,5.911,that the container does not take up more
+6339.05,6.839,than 50% of the host CPU at any given
+6342.53,6.629,time the same goes with memory setting a
+6345.889,5.431,value of 100 m to the - - memory option
+6349.159,4.97,limits the amount of memory the
+6351.32,5.969,container can use to a hundred megabytes
+6354.129,5.921,if you are interested in reading more on
+6357.289,5.79,this topic refer to the links I posted
+6360.05,5.189,in the reference page that's it for now
+6363.079,4.62,on docker engine in the
+6365.239,4.741,lecture we talk about other advanced
+6367.699,14.79,topics on docker storage and file
+6369.98,14.61,systems see you in the next layer in
+6382.489,4.411,this course we learned that containers
+6384.59,4.319,share the underlying OS kernel and as a
+6386.9,4.23,result we cannot have a windows
+6388.909,4.951,container running on Linux host or
+6391.13,4.92,vice-versa we need to keep this in mind
+6393.86,3.929,while going through this lecture as it's
+6396.05,4.23,very important concept and most
+6397.789,5.011,beginners tend to have an issue with it
+6400.28,5.669,so what are the options available for
+6402.8,6.029,docker on Windows there are two options
+6405.949,5.641,available the first one is darker on
+6408.829,5.341,Windows using docker toolbox and the
+6411.59,4.77,second one is the docker desktop for
+6414.17,4.949,Windows option we will look at each of
+6416.36,5.85,these now let's take a look at the first
+6419.119,5.571,option docker toolbox this was the
+6422.21,5.099,original support for docker on Windows
+6424.69,5.139,imagine that you have a Windows laptop
+6427.309,4.591,and no access to any Linux system
+6429.829,4.951,whatsoever but you would like to try
+6431.9,5.4,docker you don't have access to a Linux
+6434.78,5.489,system in the lab or in the cloud what
+6437.3,4.739,would you do what I did was to install a
+6440.269,4.051,virtualization software on my Windows
+6442.039,4.921,system like Oracle VirtualBox or we my
+6444.32,6.029,workstation and deploy a Linux VM on it
+6446.96,5.849,such as Ubuntu or Debian then install
+6450.349,5.52,docker on the Linux VM and then play
+6452.809,6,around with it this is what the first
+6455.869,5.341,option really does it doesn't really
+6458.809,4.44,have anything much to do with Windows
+6461.21,4.619,you cannot create Windows based docker
+6463.249,4.981,images or run Windows based docker
+6465.829,4.321,containers you obviously cannot run
+6468.23,4.739,Linux container directly on Windows
+6470.15,5.67,either you're just working with docker
+6472.969,5.911,on a Linux virtual machine on a Windows
+6475.82,5.399,host docker however provides us with a
+6478.88,5.4,set of tools to make this easy which is
+6481.219,5.67,called as the docker toolbox the docker
+6484.28,5.489,toolbox contains a set of tools like
+6486.889,4.83,Oracle VirtualBox dr. engine docker
+6489.769,4.741,machine docker compose and a user
+6491.719,4.471,interface called kite Matic this will
+6494.51,3.27,help you get started by simply
+6496.19,2.81,downloading and running the docker
+6497.78,4.16,toolbox executed
+6499,5.43,I will install worship works deploy a
+6501.94,4.86,lightweight VM called boot to docker
+6504.43,4.41,which has darker running in it already
+6506.8,4.14,so that you are all set to start with
+6508.84,2.99,docker easily and with within a short
+6510.94,3.81,period of time
+6511.83,4.87,now what about requirements you must
+6514.75,5.37,ensure that your operating system is
+6516.7,5.46,64-bit Windows 7 or higher and that the
+6520.12,5.31,virtualization is enabled on the system
+6522.16,5.46,now remember docker to box is a legacy
+6525.43,4.29,solution for all the Windows systems
+6527.62,5.97,that do not meet requirements for the
+6529.72,6.54,newer docker for Windows option the
+6533.59,5.28,second option is the newer an option
+6536.26,4.05,called docker desktop for Windows in the
+6538.87,4.14,previous option we saw that we had
+6540.31,5.16,Oracle VirtualBox installed on Windows
+6543.01,5.58,and then a Linux system and then docker
+6545.47,4.95,on that Linux system now with docker for
+6548.59,3.54,Windows we take out Oracle VirtualBox
+6550.42,3.84,and use the native virtualization
+6552.13,4.59,technology available with Windows called
+6554.26,4.05,Microsoft hyper-v during the
+6556.72,3.48,installation process for docker for
+6558.31,4.11,Windows it will still automatically
+6560.2,4.32,create a Linux system underneath but
+6562.42,4.92,this time it is created on the Microsoft
+6564.52,4.55,hyper-v instead of Oracle VirtualBox and
+6567.34,4.41,have docker running on that system
+6569.07,4.63,because of this dependency on hyper-v
+6571.75,4.2,this option is only supported for
+6573.7,4.85,Windows 10 enterprise or professional
+6575.95,4.5,Edition and on Windows Server 2016
+6578.55,5.56,because both these operating systems
+6580.45,6.39,come with hyper-v support by default now
+6584.11,5.31,here is the most important point so far
+6586.84,4.83,whatever we have been discussing with
+6589.42,4.92,Dockers support for Windows it is
+6591.67,5.22,strictly for Linux containers Linux
+6594.34,4.92,applications packaged into Linux docker
+6596.89,4.23,images we're not talking about Windows
+6599.26,4.41,applications or Windows images or
+6601.12,5.31,windows containers both the options we
+6603.67,6.51,just discussed will help you run a Linux
+6606.43,7.32,container on a Windows host with Windows
+6610.18,5.28,Server 2016 Microsoft announced support
+6613.75,4.35,for Windows containers for the first
+6615.46,4.95,time you can now packaged applications
+6618.1,4.59,Windows applications into Windows docker
+6620.41,4.65,containers and run them on Windows
+6622.69,5.37,docker host using docker desktop for
+6625.06,5.97,Windows when you install docker desktop
+6628.06,4.74,for Windows the default option is to
+6631.03,3.75,work with Linux containers
+6632.8,4.31,but if you would like to run Windows
+6634.78,5.49,containers then you must explicitly
+6637.11,7.03,configure docker for Windows to switch
+6640.27,6.33,to using Windows containers in early
+6644.14,5.19,2016 Microsoft announced Windows
+6646.6,4.8,containers now you could create Windows
+6649.33,3.66,based images and run Windows containers
+6651.4,4.29,on a Windows server just like how you
+6652.99,5.76,would run Linux containers on a Linux
+6655.69,5.25,system now you can create Windows images
+6658.75,4.76,container as your applications and share
+6660.94,5.64,them through the docker store as well
+6663.51,6.1,unlike in Linux there are two types of
+6666.58,5.1,containers in Windows the first one is a
+6669.61,4.35,Windows Server container which works
+6671.68,4.56,exactly like Linux containers where the
+6673.96,4.56,OS kernel is shared with the underlying
+6676.24,4.47,operating system to allow better
+6678.52,3.72,security boundary between containers and
+6680.71,3.87,to a lot of kernels with different
+6682.24,4.95,versions and configurations to coexist
+6684.58,5.64,the second option was introduced known
+6687.19,6.48,as the hyper-v isolation with hyper-v
+6690.22,5.46,isolation each container is run within a
+6693.67,4.5,highly optimized virtual machine
+6695.68,3.9,guaranteeing complete kernel isolation
+6698.17,4.14,between the containers and the
+6699.58,5.22,underlying host now while in the Linux
+6702.31,4.95,world you had a number of base images
+6704.8,5.4,for a Linux system such as Ubuntu debian
+6707.26,4.86,fedora Alpine etc if you remember that
+6710.2,4.08,that is what you specify at the
+6712.12,4.53,beginning of the docker file in the
+6714.28,5.37,windows world we have two options the
+6716.65,5.76,Windows server core and nano server a
+6719.65,4.83,nano server is a headless deployment
+6722.41,4.5,option for Windows Server which runs at
+6724.48,4.62,a fraction of size of the full operating
+6726.91,5.25,system you can think of this like the
+6729.1,6,Alpine image in Linux the windows server
+6732.16,5.91,core though is not as light weight as
+6735.1,5.19,you might expect it to be finally
+6738.07,5.07,windows containers are supported on
+6740.29,5.04,Windows Server 2016 nano server and
+6743.14,4.86,windows 10 professional and Enterprise
+6745.33,4.91,Edition remember on Windows 10
+6748,5.27,professional and Enterprise Edition only
+6750.24,5.68,supports hyper-v isolated containers
+6753.27,4.9,meaning as we just discussed every
+6755.92,5.31,container deployed is deployed on a
+6758.17,6.6,highly optimized virtual machine well
+6761.23,5.12,that's it about docker on windows now
+6764.77,4.79,before I finish I want to
+6766.35,5.22,point out one important fact we saw two
+6769.56,3.98,ways of running a docker container using
+6771.57,4.86,VirtualBox or hyper week but remember
+6773.54,5.2,VirtualBox and hyper-v cannot coexist on
+6776.43,4.41,the same Windows host so if you started
+6778.74,4.44,off with docker toolbox with VirtualBox
+6780.84,4.41,and if you plan to migrate to hyper-v
+6783.18,3.78,remember you cannot have both solutions
+6785.25,3.42,at the same time there is a migration
+6786.96,3.96,and guide available on docker
+6788.67,5.37,documentation page on how to migrate
+6790.92,3.69,from Marshall box to hyper wait that's
+6794.04,2.31,it for now
+6794.61,13.7,thank you and I will see you the next
+6796.35,15.06,lecture we now look at docker on Mac
+6808.31,5.29,Locker on Mac is similar to docker on
+6811.41,2.73,Windows there are two options to get
+6813.6,3.03,started
+6814.14,6.06,docker on Mac using docker toolbox or
+6816.63,6.81,docker Desktop for Mac option let's look
+6820.2,5.55,at the first option docker toolbox this
+6823.44,5.61,was the original support for docker on
+6825.75,6.45,Mac it is docker on a Linux VM created
+6829.05,4.5,using VirtualBox on Mac as with Windows
+6832.2,3.72,it has nothing to do with Mac
+6833.55,4.62,applications or Mac based images or Mac
+6835.92,5.64,containers it purely runs Linux
+6838.17,5.55,containers on a Mac OS dog or toolbox
+6841.56,4.2,contains a set of tools like Oracle
+6843.72,4.02,VirtualBox docker and Jain docker
+6845.76,4.2,machine docker compose and a user
+6847.74,4.26,interface called CAD Matic when you
+6849.96,4.86,download and install the docker toolbox
+6852,5.07,executable it installs VirtualBox
+6854.82,3.81,deploys lightweight VM called boot a
+6857.07,2.07,docker which has dr running in it
+6858.63,6.51,already
+6859.14,8.13,this requires mac OS 10.8 or newer the
+6865.14,5.07,second option is the newer option called
+6867.27,5.16,docker Desktop for Mac with docker
+6870.21,4.47,Desktop for Mac we take out or
+6872.43,4.92,commercial box and use hyper cat
+6874.68,4.95,virtualization technology during the
+6877.35,4.77,installation process for docker for Mac
+6879.63,5.1,it will still automatically create a
+6882.12,4.59,Linux system underneath but this time it
+6884.73,4.35,is created on hyper kit instead of
+6886.71,3.77,Oracle VirtualBox and have dr. running
+6889.08,5.91,on that system
+6890.48,7.15,this requires Mac OS Sierra 10 or 12 or
+6894.99,5.29,newer and Martin and the Mac hardware
+6897.63,5.65,must be 2010 or newer model
+6900.28,6.09,finally remember that all of this is to
+6903.28,5.19,be able to run Linux container on Mac as
+6906.37,5.52,of this recording there are no Mac based
+6908.47,15.54,images or containers well that's it with
+6911.89,14.73,docker on Mac for now we will now try to
+6924.01,6.09,understand what container orchestration
+6926.62,5.64,is so far in this course we've seen that
+6930.1,4.17,with docker you can run a single
+6932.26,4.77,instance of the application with a
+6934.27,5.46,simple docker run command in this case
+6937.03,5.07,to run a node.js based application
+6939.73,4.89,you're on the docker run nodejs command
+6942.1,5.1,but that's just one instance of your
+6944.62,4.35,application on one docker host what
+6947.2,4.71,happens when the number of users
+6948.97,5.16,increase and that instance is no longer
+6951.91,4.35,able to handle the load you deploy
+6954.13,3.84,additional instance of your application
+6956.26,4.08,by running the docker run command
+6957.97,4.68,multiple times so that's something you
+6960.34,4.11,have to do yourself you have to keep a
+6962.65,3.06,close watch on the load and performance
+6964.45,4.2,of your application and deploy
+6965.71,4.71,additional instances yourself and not
+6968.65,4.83,just that you have to keep a close watch
+6970.42,5.76,on the health of these applications and
+6973.48,4.62,if a container was to fail you should be
+6976.18,3.99,able to detect that and run the docker
+6978.1,4.83,run commander game to deploy another
+6980.17,4.74,instance of that application what about
+6982.93,4.47,the health of the docker host itself
+6984.91,5.49,what if the host crashes and is
+6987.4,6.39,inaccessible the containers hosted on
+6990.4,5.52,that host become inaccessible too so
+6993.79,4.49,what do you do in order to solve these
+6995.92,5.13,issues you will need a dedicated
+6998.28,5.2,engineer who can sit and monitor the
+7001.05,4.59,state performance and health of the
+7003.48,4.26,containers and take necessary actions to
+7005.64,3.96,remediate the situation but when you
+7007.74,4.11,have large applications deployed with
+7009.6,5.43,tens of thousands of containers that's
+7011.85,6.09,that's not a practical approach so you
+7015.03,5.61,can build your own scripts and and that
+7017.94,6.27,will help you tackle these issues to
+7020.64,5.97,some extent container orchestration is
+7024.21,5.19,just a solution for that it is a
+7026.61,4.92,solution that consists of a set of tools
+7029.4,4.27,and scripts that can help host
+7031.53,4.149,containers in a production
+7033.67,4.38,environment typically a container
+7035.679,4.411,orchestration solution consists of
+7038.05,5.189,multiple docker host that can host
+7040.09,4.95,containers that way even if one fails
+7043.239,4.291,the application is still accessible
+7045.04,5.159,through the others the container
+7047.53,5.01,orchestration solution easily allows you
+7050.199,4.741,to deploy hundreds or thousands of
+7052.54,5.52,instances of your application with a
+7054.94,5.549,single command this is a command used
+7058.06,4.23,for docker swarm we will look at the
+7060.489,3.811,command itself in a bit
+7062.29,4.74,some orchestration solutions can help
+7064.3,5.46,you automatically scale up the number of
+7067.03,4.5,instances when users increase and scale
+7069.76,5.16,down the number of instances when the
+7071.53,5.25,demand decreases some solutions can even
+7074.92,4.02,help you in automatically adding
+7076.78,4.68,additional hosts to support the user
+7078.94,4.68,load and not just clustering and scaling
+7081.46,4.41,the container orchestration solutions
+7083.62,4.05,also provide support for advanced
+7085.87,4.8,networking between these containers
+7087.67,5.279,across different hosts as well as load
+7090.67,3.9,balancing user requests across different
+7092.949,3.901,house they also provide support for
+7094.57,3.75,sharing storage between the house as
+7096.85,3.57,well as support for configuration
+7098.32,4.59,management and security within the
+7100.42,4.47,cluster there are multiple container
+7102.91,5.7,orchestration solutions available today
+7104.89,6.599,docker has daher suam kubernetes from
+7108.61,5.879,Google and mezzo mezz from Paget
+7111.489,5.19,well docker swarm is really easy to set
+7114.489,4.261,up and get started it lacks some of the
+7116.679,3.81,advanced auto scaling features required
+7118.75,5.19,for complex production grade
+7120.489,5.281,applications mezzos on the other hand is
+7123.94,2.19,quite difficult to set up and get
+7125.77,2.96,started
+7126.13,5.91,but supports many advanced features
+7128.73,5.56,kubernetes arguably the most popular of
+7132.04,4.05,it all is a bit difficult to set up and
+7134.29,5.01,get started but provides a lot of
+7136.09,5.69,options to customize deployments and has
+7139.3,5.04,support for many different vendors
+7141.78,5.26,kubernetes is now supported on all
+7144.34,5.82,public cloud service providers like GCP
+7147.04,5.49,azure and AWS and the kubernetes project
+7150.16,5.4,is one of the top-ranked projects on
+7152.53,5.459,github in the upcoming lectures we will
+7155.56,4.04,take a quick look at docker swamp and
+7157.989,10.911,kubernetes
+7159.6,12.16,[Music]
+7168.9,4.299,we will now get a quick introduction to
+7171.76,4.53,docker swarm
+7173.199,6.361,docker swarm has a lot of concepts to
+7176.29,5.28,cover and requires its own course but we
+7179.56,4.11,will try to take a quick look at some of
+7181.57,5.58,the basic details so you can get a brief
+7183.67,5.61,idea on what it is with docker swamp you
+7187.15,4.41,could now combine multiple docker
+7189.28,4.26,machines together into a single cluster
+7191.56,4.02,docker swarm will take care of
+7193.54,4.62,distributing your services or your
+7195.58,5.28,application instances into separate
+7198.16,5.19,hosts for high availability and for load
+7200.86,5.28,balancing across different systems in
+7203.35,5.31,hardware to set up a docker swamp you
+7206.14,4.71,must first have hosts or multiple hosts
+7208.66,4.53,with docker installed on them then you
+7210.85,5.19,must designate one host to be the
+7213.19,5.31,manager or the master or the swamp
+7216.04,5.13,manager as it is called and others as
+7218.5,4.62,slaves or workers once you're done with
+7221.17,4.5,that run the docker swarm init command
+7223.12,4.98,on the swarm manager and that will
+7225.67,4.95,initialize the swamp manager the output
+7228.1,5.13,will also provide the command to be run
+7230.62,4.71,on the workers so copy the command and
+7233.23,4.5,run it on the worker nodes to join the
+7235.33,4.71,manager after joining the swamp the
+7237.73,4.83,workers are also referred to as nodes
+7240.04,6,and you're now ready to create services
+7242.56,6.48,and deploy them on the swamp cluster so
+7246.04,5.85,let's get into some more details as you
+7249.04,3.69,already know to run an instance of my
+7251.89,4.02,web server
+7252.73,5.82,I run the docker run command and specify
+7255.91,4.86,the name of the image I wish to run this
+7258.55,5.49,creates a new container instance of my
+7260.77,4.679,application and serves my web server now
+7264.04,3.659,that we have learned how to create a
+7265.449,4.561,swamp cluster how do I utilize my
+7267.699,4.741,cluster to run multiple instances of my
+7270.01,4.83,web server now one way to do this would
+7272.44,4.86,be to run the docker run command on each
+7274.84,4.71,worker node but that's not ideal as I
+7277.3,4.29,might have to log into each node and run
+7279.55,4.2,this command and there there could be
+7281.59,4.35,hundreds of nodes I will have to set up
+7283.75,4.5,load balancing myself a large monitor
+7285.94,4.71,the state of each instance myself and if
+7288.25,4.29,instances were to fail I'll have to
+7290.65,2.67,restart them myself so it's going to be
+7292.54,3.09,an impossible
+7293.32,5.04,tasks that is where dr. Swan
+7295.63,5.88,orchestration consent dr. Swan
+7298.36,5.19,Orchestrator does all of this for us so
+7301.51,4.14,far we've only set up this one cluster
+7303.55,4.53,but we haven't seen orchestration in
+7305.65,5.31,action the key component of suam
+7308.08,5.49,orchestration is the docker service
+7310.96,5.04,docker services are one or more
+7313.57,4.71,instances of a single application or
+7316,5.04,service that runs across to saw the
+7318.28,4.26,nodes in the Swan cluster for example in
+7321.04,4.44,this case I could create a docker
+7322.54,5.16,service to run multiple instances of my
+7325.48,4.8,web server application across worker
+7327.7,5.04,nodes in my swamp cluster for this
+7330.28,5.4,around the docker service create command
+7332.74,5.79,on the manager node and specify my image
+7335.68,5.4,name there which is my web server in
+7338.53,4.98,this case and use the option replicas to
+7341.08,4.35,specify the number of instances of my
+7343.51,4.71,web server I would like to run across
+7345.43,5.79,the cluster since I specified three
+7348.22,5.37,replicas and I get three instances of my
+7351.22,5.34,web server distributed across the
+7353.59,5.22,different worker nodes remember the
+7356.56,4.29,docker service command must be run on
+7358.81,4.56,the manager node and not on the worker
+7360.85,4.92,node the docker service create command
+7363.37,4.59,is similar to the docker run command in
+7365.77,5.31,terms of the options passed such as the
+7367.96,6.09,- II environment variable the - key for
+7371.08,5.97,publishing ports the network option to
+7374.05,5.22,attach container to a network etc well
+7377.05,4.95,that's a high-level introduction to dr.
+7379.27,4.77,Swan there's a lot more to know such as
+7382,4.83,configuring multiple managers overlay
+7384.04,5.94,networks etc as I mentioned it requires
+7386.83,5.82,its own separate course well that's it
+7389.98,5.45,for now in the next lecture we will look
+7392.65,11.71,at kubernetes at a higher level
+7395.43,11.519,[Music]
+7404.36,4.839,we will now get a brief introduction to
+7406.949,5.46,basic kubernetes concepts again
+7409.199,6.361,kubernetes requires its own course well
+7412.409,5.071,a few courses at least five but we will
+7415.56,5.159,try to get a brief introduction to it
+7417.48,5.52,here with docker you were able to run a
+7420.719,5.46,single instance of an application using
+7423,5.88,the docker CLI by running the docker run
+7426.179,5.131,command which is grid running an
+7428.88,5.58,application has never been so easy
+7431.31,6.42,before with kubernetes using the
+7434.46,5.699,kubernetes CLI known as cube control you
+7437.73,4.55,can run a thousand instance of the same
+7440.159,5.161,application with a single command
+7442.28,5.589,kubernetes can scale it up to two
+7445.32,4.68,thousand with another command kubernetes
+7447.869,4.681,can be even configured to do this
+7450,5.04,automatically so that instances and the
+7452.55,6.12,infrastructure itself can scale up and
+7455.04,6.9,down based on user load kubernetes can
+7458.67,6.239,upgrade these 2000 instances of the
+7461.94,5.79,application in a rolling upgrade fashion
+7464.909,4.741,one at a time with a single command if
+7467.73,4.02,something goes wrong it can help you
+7469.65,4.92,roll back these images with a single
+7471.75,5.639,command kubernetes can help you test new
+7474.57,4.68,features of your application by only
+7477.389,4.531,upgrading a percentage of these
+7479.25,4.8,instances through a be testing methods
+7481.92,5.37,the kubernetes open architecture
+7484.05,6.12,provides support for many many different
+7487.29,5.13,network and storage vendors any network
+7490.17,5.549,or storage brand that you can think of
+7492.42,5.759,has a plugin for kubernetes kubernetes
+7495.719,5.341,supports a variety of authentication and
+7498.179,4.98,authorization mechanisms all major cloud
+7501.06,5.67,service providers have native support
+7503.159,6.241,for kubernetes so what's the relation
+7506.73,5.48,between doctor and kubernetes well
+7509.4,5.13,kubernetes uses docker host to host
+7512.21,5.44,applications in the form of docker
+7514.53,5.22,containers well it need not be docker
+7517.65,4.62,all the time kubernetes supports
+7519.75,4.909,alternatives to Dockers as well such as
+7522.27,3.77,rocket or a cryo
+7524.659,4.051,but let's take a quick look at the
+7526.04,6.3,kubernetes architecture a kubernetes
+7528.71,6.63,cluster consists of a set of nodes let
+7532.34,5.28,us start with nodes a node is a machine
+7535.34,4.47,physical or virtual on which a cobranet
+7537.62,5.34,is the kubernetes software a set of
+7539.81,5.369,tools are installed a node is a worker
+7542.96,4.89,machine and that is where containers
+7545.179,4.56,will be launched by kubernetes but what
+7547.85,3.539,if the node on which the application is
+7549.739,4.051,running fails well obviously our
+7551.389,4.891,application goes down so you need to
+7553.79,5.22,have more than one nodes a cluster is a
+7556.28,4.95,set of nodes grouped together this way
+7559.01,4.56,even if one node fails you have your
+7561.23,5.94,application still accessible from the
+7563.57,5.97,other nodes now we have a cluster but
+7567.17,4.35,who is responsible for managing this
+7569.54,4.17,cluster where is the information about
+7571.52,4.83,the members of the cluster stored and
+7573.71,4.469,how are the nodes monitored when a node
+7576.35,4.26,fails how do you move the workload of
+7578.179,5.701,the failed nodes to another worker node
+7580.61,5.31,that's where the master comes in the
+7583.88,5.13,master is a note with the kubernetes
+7585.92,5.73,control plane components installed the
+7589.01,4.83,master watches over the notes are in the
+7591.65,4.86,cluster and is responsible for the
+7593.84,4.859,actual orchestration of containers on
+7596.51,5.189,the worker nodes when you install
+7598.699,4.98,kubernetes on a system you're actually
+7601.699,6.181,installing the following components an
+7603.679,7.381,API server and EDD server a cubelet
+7607.88,6.029,service contain a runtime engine like
+7611.06,6.3,docker and a bunch of controllers and
+7613.909,5.701,the scheduler the API server acts as the
+7617.36,4.319,front end for kubernetes the users
+7619.61,4.98,management devices command line
+7621.679,4.681,interfaces all talk to the API server to
+7624.59,4.47,interact with the kubernetes cluster
+7626.36,5.43,next is the Etsy be a key value store
+7629.06,5.28,the Etsy D is a distributed reliable key
+7631.79,4.8,value store used by kubernetes to store
+7634.34,4.26,all data used to manage the cluster
+7636.59,4.56,think of it this way when you have
+7638.6,4.889,multiple nodes and multiple masters in
+7641.15,4.02,your cluster Etsy D stores all that
+7643.489,4.591,information on all the nodes in the
+7645.17,5.67,cluster in a distributed manner NCD is
+7648.08,4.44,responsible for implementing locks
+7650.84,4.56,within the cluster to ensure there are
+7652.52,4.59,no conflicts between the masters the
+7655.4,2.88,scheduler is responsible for
+7657.11,3.509,distributing work
+7658.28,4.379,containers across multiple notes it
+7660.619,5.37,looks for newly created containers and
+7662.659,5.46,assigns them to notes the controllers
+7665.989,4.32,are the brain behind orchestration
+7668.119,4.71,they're responsible for noticing and
+7670.309,5.25,responding when notes containers or
+7672.829,4.651,endpoints goes down the controllers
+7675.559,4.5,makes decisions to bring up new
+7677.48,5.099,containers in such cases the container
+7680.059,5.011,runtime is the underlying software that
+7682.579,5.761,is used to run containers in our case it
+7685.07,5.609,happens to be docker and finally cubelet
+7688.34,4.77,is the agent that runs on each node in
+7690.679,4.56,the cluster the agent is responsible for
+7693.11,4.799,making sure that the containers are
+7695.239,5.13,running on the notes as expected and
+7697.909,4.23,finally we also need to learn a little
+7700.369,4.591,bit about one of the command-line
+7702.139,5.1,utilities known as the cube command-line
+7704.96,5.19,tool or the cube control tool or cube
+7707.239,5.61,cuddle as it is also called the cube
+7710.15,4.38,control tool is the kubernetes CLI which
+7712.849,4.44,is used to deploy and manage
+7714.53,4.919,applications on a kubernetes cluster to
+7717.289,3.571,get cluster related information to get
+7719.449,4.71,the status with the nodes in the cluster
+7720.86,5.46,and many other things the cube control
+7724.159,4.23,run command is used to deploy an
+7726.32,4.049,application on the cluster the cube
+7728.389,3.9,control cluster info command is used to
+7730.369,4.411,view information about the cluster and
+7732.289,4.441,the cube control get nodes command is
+7734.78,5.22,used to list all the nodes part of the
+7736.73,5.34,cluster so to run hundreds of instances
+7740,5.01,of your application across hundreds of
+7742.07,6.27,nodes all I need is a single kubernetes
+7745.01,5.549,command like this well that's all we
+7748.34,4.259,have for now a quick introduction to
+7750.559,4.62,Cornelis and this architecture we
+7752.599,5.761,currently have three courses on code
+7755.179,5.281,cloud on kubernetes that will take you
+7758.36,5.339,from the absolute beginner to a
+7760.46,4.57,certified expert so have a look at it
+7763.699,10.301,when you get a chance
+7765.03,11.62,[Music]
+7774,5.02,so we're at the end of this beginners
+7776.65,4.83,course to docker I hope you had a great
+7779.02,5.309,learning experience if so please leave a
+7781.48,5.19,comment below if you like my way of
+7784.329,5.16,teaching you will love my other courses
+7786.67,5.239,hosted on my site at code cloud we have
+7789.489,4.741,courses for docker swarm kubernetes
+7791.909,5.23,advanced courses on kubernetes
+7794.23,5.04,certifications as well as OpenShift we
+7797.139,5.371,have courses for automation tools like
+7799.27,7.4,angelo chef and puppet and many more on
+7802.51,4.16,the way with it code cloud at
+7806.82,4.529,www.kencostore.com or
+7813.49,6.089,[Music]
