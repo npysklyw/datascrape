@@ -3,22 +3,30 @@ var scrap = require('youtube-captions-scraper');
 const youtubedl = require('youtube-dl')
 const ObjectsToCsv = require('objects-to-csv');
 var fetch = require('fetch')
-import API_KEY_YOUTUBE from './keys.js'
+var key = require('./keys.js');
 
-const API_KEY = process.env.REACT_APP_YT_API_KEY || API_KEY_YOUTUBE;
+const API_KEY = process.env.REACT_APP_YT_API_KEY || key.API_KEY_YOUTUBE;
 
+listofurls  = ["PLBRObSmbZluTCoqlOg-3wEdlyRQLAJ2gs"]
 //getting a bunch of video ids, the idea is that we can use these to train on tons of data
-fetch.fetchUrl("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=PLWKjhJtqVAblvI1i46ScbKV2jH1gdL7VQ&key=" + API_KEY, function(error, meta, body){
+
+for (videos in listofurls) {
+
   
-  test = []
-  body = JSON.parse(body.toString())
+  URL = "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet%2CcontentDetails&maxResults=25&playlistId=" + listofurls[videos]
+  fetch.fetchUrl(URL + "&key=" + API_KEY, function(error, meta, body){
   
-  is = body["items"]
-  //console.log(is)
-  for (i = 0; i < is.length; i++) {
-    console.log(is[i].contentDetails.videoId)
-    test.push(is[i].contentDetails.videoId)
-  }
+    test = []
+    body = JSON.parse(body.toString());
+    
+    is = body["items"];
+    
+    for (i = 0; i < is.length; i++) {
+      test.push(is[i].contentDetails.videoId);
+
+      getSubs(is[i].contentDetails.videoId);
+      returnChaps(is[i].contentDetails.videoId);
+    }
   
   
 
@@ -26,45 +34,59 @@ fetch.fetchUrl("https://youtube.googleapis.com/youtube/v3/playlistItems?part=sni
 
 
 
-//console.log(jsa.chapters)
-//Code will get subtitles for a video and return
+}
+
+
+
+// console.log(jsa.chapters)
+// Code will get subtitles for a video and return
 // TODO: Save these along with the chapter locations to some data format we can get from python
-// scrap.getSubtitles({
-//     videoID: 'fqMOX6JJhGo', // youtube video id
-//     lang: 'en' // default: `en`
-//   }).then(captions => {
-//     console.log(captions);
+function getSubs(videoId) {
+  scrap.getSubtitles({
+    videoID: String(videoId), // youtube video id
+    lang: 'en' // default: `en`
+  }).then(captions => {
 
-//     (async () => {
+    if (typeof captions === 'object' && captions !== null) {
+      (async () => {
 
-//       const csv = new ObjectsToCsv(captions);
-//       //const csv = new ObjectsToCsv(data);
-//       await csv.toDisk('./subtitles/subs.csv', { append: true });
-     
-//     })();
-//   });
+      
+        const csv = new ObjectsToCsv(captions);
+        //const csv = new ObjectsToCsv(data);
+        await csv.toDisk('./subtitles/' + videoId + '.csv', { append: false });
+       
+      })();
+    }
+    
+  });
+}
 
-// //Will track the url
-// const url = 'https://www.youtube.com/watch?v=fqMOX6JJhGo'
-// // Optional arguments passed to youtube-dl.
-// const options = ['--write-info-json']
+
+function returnChaps(videoID) {
+  // //Will track the url
+  const url = 'https://www.youtube.com/watch?v=' + videoID;
+  // // Optional arguments passed to youtube-dl.
+  const options = ['--write-info-json'];
 
 
-// youtubedl.getInfo(url, options, function(err, info) {
-//   if (err) throw err
+  youtubedl.getInfo(url, options, function(err, info) {
+    if (err) return null;
 
-//   var data = info.chapters;
-//   // console.log(data);
+    var data = info.chapters;
+    
+    if (typeof data === 'object' && data !== null) {
+      (async () => {
 
-//   (async () => {
+        const csv = new ObjectsToCsv(data);
+        //const csv = new ObjectsToCsv(data);
+        await csv.toDisk('./chapters/' + videoID + '.csv', { append: false });
+      
+      })();
+    }
+    
+    
+  })
 
-//     const csv = new ObjectsToCsv(data);
-//     //const csv = new ObjectsToCsv(data);
-//     await csv.toDisk('./subtitles/chapters.csv', { append: true });
-   
-//   })();
-  
-  
-// })
+}
 
 
