@@ -7,7 +7,7 @@ var key = require('./keys.js');
 
 const API_KEY = process.env.REACT_APP_YT_API_KEY || key.API_KEY_YOUTUBE;
 
-listofurls  = ["PLBRObSmbZluTCoqlOg-3wEdlyRQLAJ2gs"]
+listofurls  = ["PLBRObSmbZluTCoqlOg-3wEdlyRQLAJ2gs","PLBRObSmbZluTIm2KhiuLquoKdNjaU66hS"]
 //getting a bunch of video ids, the idea is that we can use these to train on tons of data
 
 for (videos in listofurls) {
