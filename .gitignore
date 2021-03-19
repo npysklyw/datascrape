@@ -1,10 +1,6 @@
 node_modules/
-*.csv
 subtitles/
 chapters/
-
 keys.js
-test.csv
-a.json
-Docker Tutorial for Beginners - A Full DevOps Course on How to Run Applications in Containers-fqMOX6JJhGo.mp4
-test.csv
+*.csv
+model.py
