@@ -6,4 +6,4 @@ First run  ```npm install``` in this directory to get the node modules used.
 
 To run scraper.js use ```node scraper.js```
   
-In the scrape.js file you should be able to add playlistId string so you can get subtitle and chapter data for all videos in a playlist of these exist.
+In the scrape.js file you should be able to add playlistId strings so you can get subtitle and chapter data for all videos in a playlist of these exist.
